@@ -1,4 +1,6 @@
 function Nav() {
+
+  
   return (
     <header>
       <nav className="flex w-full bg-black items-center justify-between flex-wrap px-5 py-2">
@@ -13,14 +15,14 @@ function Nav() {
           </a>
         </div>
         <div className="">
-          <form className="flex gap-5" action="">
-            <input
-              className="bg-gray-800 border-gray-600 border py-1 px-1 rounded-md w-96"
+          <form className="flex gap-5"onSubmit={e => e.preventDefault()}>
+            <input 
+              className="bg-gray-800 border-gray-600 border-2 py-1 px-1 rounded-md w-96 text-white focus:border-gray-500 focus:border-2 focus:outline-none"
               type="text"
               name=""
               id=""
             />
-            <button className="text-white bg-slate-700 px-3 py-1 rounded-md border border-gray-600 font-medium">
+            <button className="text-white bg-slate-700 px-3 py-1 rounded-md border border-gray-600 font-medium hover:bg-slate-600">
               Buscar
             </button>
           </form>
