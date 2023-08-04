@@ -4,10 +4,14 @@ import Dashboard from "./components/Dashboard"
 function App() {
   return (
     <>
+    <header className="font-poppins">
     <Nav/>
+    </header>
     
-    <div className="flex">
+    <div className="flex font-poppins">
+      <nav>
       <Sidebar />
+      </nav>
       <Dashboard /> 
     </div>
     </>

@@ -1,7 +1,6 @@
 function Nav() {
   return (
     <>
-    <header>
       <nav className="flex w-full bg-gray-950 items-center justify-between flex-wrap px-5 py-2">
         <div>
           <a href="https://flowbite.com/" className="flex items-center">
@@ -32,7 +31,6 @@ function Nav() {
           alt=""
         />
       </nav>
-    </header>
     <hr className="h-px  bg-slate-600 border-0 "/>
     </>
   );
