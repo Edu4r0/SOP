@@ -1,12 +1,12 @@
 const Menus = [
-    { title: "Dashboard", src: "dashboard" },
-    { title: "Inbox", src: "Chat" },
-    { title: "Accounts", src: "User", gap: true },
-    { title: "Schedule ", src: "Calendar" },
-    { title: "Search", src: "Search" },
-    { title: "Analytics", src: "Chart" },
-    { title: "Files ", src: "Folder", gap: true },
-    { title: "Setting", src: "setting" },
-  ];
+  { title: "Dashboard", src: "/" },
+  { title: "Users", src: "users" },
+  { title: "Reports", src: "User" },
+  { title: "Image", src: "Calendar" },
+  { title: "Survey", src: "Search" },
+  { title: "Games", src: "Chart" },
+  { title: "Files ", src: "Folder" },
+  { title: "Setting", src: "setting" },
+];
 
 export default Menus;  
