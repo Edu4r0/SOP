@@ -1,4 +1,6 @@
 import Days from "../data/Days";
+import data from "../data/LineChart";
+import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
 
 function Dashboard() {
   const date = new Date();
@@ -8,7 +10,7 @@ function Dashboard() {
   });
 
   return (
-    <main className="bg-slate-900 w-full px-5 py-10 ">
+    <main className="bg-slate-900  w-full px-5 py-10 ">
       <div className="flex place-content-between gap-10">
         <div className="flex justify-between bg-slate-700 h-44 w-1/2 rounded-md">
           <div className="h-8 w-52 mx-5 my-3 bg-blue-800 rounded-md shadow-md text-white"></div>
@@ -28,7 +30,23 @@ function Dashboard() {
       </div>
 
       <div className="flex place-content-between gap-20 mx-auto py-5 ">
-        <div className="bg-slate-800 h-32 w-60 rounded-md"></div>
+        <div className="bg-slate-800 h-32 w-60 rounded-md flex">
+          resum
+          <div className="w-full px-2 py-2">
+          <ResponsiveContainer>
+          <LineChart className="flex-1" width={300} height={100} data={data}>
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="pv"
+              stroke="#8884d8"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+          </ResponsiveContainer>
+          </div>
+        </div>
         <div className="bg-slate-800 h-32 w-60 rounded-md"></div>
         <div className="bg-slate-800 h-32 w-60 rounded-md"></div>
       </div>
