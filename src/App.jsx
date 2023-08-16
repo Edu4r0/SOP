@@ -17,7 +17,7 @@ function App() {
           <nav>
             <Sidebar />
           </nav>
-          <Login />
+          <Dashboard />
         </div>
       </>
     );

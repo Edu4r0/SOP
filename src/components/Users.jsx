@@ -4,23 +4,22 @@ function Users() {
   const [DataUser, setDataUser] = useState([]);
 
 
-  function User() {
+  async function User() {
     // eslint-disable-next-line no-unused-vars
-    const response = fetch("http://localhost:5000/UsersList")
-      .then((response) => response.json())
-      .then((data) => setDataUser(data));
+    const response = await fetch("http://localhost:5000/UsersList")
+    const data = await response.json()
+    setDataUser(data)
   }
-
+  User()
   
   function hadleSubmit(e) {
     e.preventDefault();
-    const text = e.target.input.value;
 
     
   }
 
   return (
-    <div className="bg-slate-900 w-full py-10">
+    <div className="bg-slate-900 w-full py-10 ">
       <div className="grid place-items-center my-5">
         <form
           onSubmit={
@@ -33,7 +32,6 @@ function Users() {
             type="text"
           />
           <button
-            onClick={FilterUser}
             className="bg-blue-800 px-2 hover:bg-blue-600 h-7 text-white rounded-md"
           >
             Buscar
@@ -42,7 +40,7 @@ function Users() {
       </div>
       <hr className="border-gray-600 my-5" />
       <div className="px-11 ">
-        <table className="w-full">
+        <table className="w-full ">
           <thead className="uppercase text-sm text-slate-400 bg-gray-700 text-center">
             <tr>
               <th>id</th>
@@ -52,9 +50,9 @@ function Users() {
             </tr>
           </thead>
           <tbody className="text-white text-center">
-            {DataUser.map((user, index) => (
+            {DataUser.length > 0 ? DataUser.map((user, index) => (
               <tr
-                className="border-b dark:bg-gray-800 dark:border-gray-700"
+                className="border-b bg-gray-800 border-gray-700"
                 key={user.name}
               >
                 <td>{index}</td>
@@ -68,11 +66,12 @@ function Users() {
                   )}
                 </td>
               </tr>
-            ))}
+            )) : <tr >
+              <td colSpan={4}> No hay Datos</td>
+            </tr> }
           </tbody>
         </table>
       </div>
-      <button onClick={User}>Click</button>
     </div>
   );
 }
