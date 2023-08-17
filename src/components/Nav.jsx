@@ -31,7 +31,7 @@ function Nav() {
           alt=""
         />
       </nav>
-    <hr className="h-px  bg-slate-600 border-0 "/>
+      <hr className="h-px  bg-slate-600 border-0 " />
     </>
   );
 }
