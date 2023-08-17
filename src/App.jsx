@@ -1,6 +1,7 @@
 import Nav from "./components/Nav";
 import Users from "./components/Users";
 import Image from "./components/Image";
+import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
