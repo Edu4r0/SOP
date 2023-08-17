@@ -3,22 +3,13 @@ import { useState } from "react";
 function Users() {
   const [DataUser, setDataUser] = useState([]);
 
-
-  async function User() {
+  function User() {
     // eslint-disable-next-line no-unused-vars
-    const response = await fetch("http://localhost:5000/UsersList")
-    const data = await response.json()
-    setDataUser(data)
-  }
-  User()
-  
-  function hadleSubmit(e) {
-    e.preventDefault();
-
-    
+    const response = fetch("http://localhost:5000/UsersList")
+      .then((response) => response.json())
+      .then((data) => setDataUser(data));
   }
 
-<<<<<<< HEAD
   const FilterUser = DataUser.map((data) => console.log(data));
 
   return (
@@ -28,26 +19,13 @@ function Users() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-=======
-  return (
-    <div className="bg-slate-900 w-full py-10 ">
-      <div className="grid place-items-center my-5">
-        <form
-          onSubmit={
-            hadleSubmit
-          }
->>>>>>> 455e7b5a43ba38817154c5409b573e736bf28fa6
         >
           <input
-            name="input"
             className="bg-gray-800 border-2 h-7 text-white text-sm  py-1 px-1 rounded-md focus:outline-none  border-gray-600 mx-5"
             type="text"
           />
           <button
-<<<<<<< HEAD
             onClick={FilterUser}
-=======
->>>>>>> 455e7b5a43ba38817154c5409b573e736bf28fa6
             className="bg-blue-800 px-2 hover:bg-blue-600 h-7 text-white rounded-md"
           >
             Buscar
@@ -56,7 +34,7 @@ function Users() {
       </div>
       <hr className="border-gray-600 my-5" />
       <div className="px-11 ">
-        <table className="w-full ">
+        <table className="w-full">
           <thead className="uppercase text-sm text-slate-400 bg-gray-700 text-center">
             <tr>
               <th>id</th>
@@ -66,9 +44,9 @@ function Users() {
             </tr>
           </thead>
           <tbody className="text-white text-center">
-            {DataUser.length > 0 ? DataUser.map((user, index) => (
+            {DataUser.map((user, index) => (
               <tr
-                className="border-b bg-gray-800 border-gray-700"
+                className="border-b dark:bg-gray-800 dark:border-gray-700"
                 key={user.name}
               >
                 <td>{index}</td>
@@ -82,12 +60,11 @@ function Users() {
                   )}
                 </td>
               </tr>
-            )) : <tr >
-              <td colSpan={4}> No hay Datos</td>
-            </tr> }
+            ))}
           </tbody>
         </table>
       </div>
+      <button onClick={User}>Click</button>
     </div>
   );
 }
