@@ -31,7 +31,7 @@ function Sidebar() {
 
               <a
                 className={`font-semibold  ${open ? "w-36" : "scale-0"}`}
-                href={menu.src}
+                href={menu.href}
               >
                 {menu.title}
               </a>

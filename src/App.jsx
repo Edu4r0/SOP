@@ -6,6 +6,17 @@ import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 function App() {
+
+  const SingIn = () => {
+    return (
+      <>
+        <main>
+          <Login/>
+        </main>
+      </>
+    );
+  };
+
   const Layout = () => {
     return (
       <>
@@ -61,9 +72,11 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />} />
+          <Route path="/" element={<SingIn />} />
+          <Route path="/dashboard" element={<Layout />} />
           <Route path="/users" element={<User />} />
           <Route path="/image" element={<Images />} />
+          
           
         </Routes>
       </BrowserRouter>

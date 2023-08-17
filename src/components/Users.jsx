@@ -3,14 +3,13 @@ import { useState } from "react";
 function Users() {
   const [DataUser, setDataUser] = useState([]);
 
-  function User() {
+  async function User() {
     // eslint-disable-next-line no-unused-vars
     const response = fetch("http://localhost:5000/UsersList")
-      .then((response) => response.json())
-      .then((data) => setDataUser(data));
+    const data = await response.json()
+    setDataUser(data)
   }
-
-  const FilterUser = DataUser.map((data) => console.log(data));
+  User()
 
   return (
     <div className="bg-slate-900 w-full py-10">
@@ -25,7 +24,6 @@ function Users() {
             type="text"
           />
           <button
-            onClick={FilterUser}
             className="bg-blue-800 px-2 hover:bg-blue-600 h-7 text-white rounded-md"
           >
             Buscar
