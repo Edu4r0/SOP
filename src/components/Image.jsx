@@ -5,7 +5,7 @@ function Image() {
 
   function handleClick() {
     const inputfile = document.getElementById('inputfile')
-    inputfile.addEventListener('click',setfile(!file))
+    inputfile.click()
   }
 
   return (
