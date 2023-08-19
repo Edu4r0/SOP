@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 function Image() {
-  function handleClick (e) {
-    e.eventpreventDefault()
-    const input = document.getElementById('unpload')
-    input.addEventListener(onclick)
+  const [file, setfile] = useState(false)
+
+  function handleClick() {
+    const inputfile = document.getElementById('inputfile')
+    inputfile.click()
   }
+
   return (
     <main className="bg-slate-900 w-full">
       <div className="flex flex-col items-center justify-center py-10">
@@ -14,6 +18,8 @@ function Image() {
           <div className="flex justify-center items-center h-full border-dashed border-blue-800 border-8 w-full">
             <input className="hidden" type="file" name="unpload" id="unpload" />
             <a onClick={(e)=> {handleClick(e)}} className="underline" href="#">Unpload Image</a>
+            <input className="hidden" type="file" name="unpload" id="inputfile" />
+            <span onClick={handleClick} className="underline text-white hover:text-blue-600 cursor-pointer">Unpload Image</span>
           </div>
         </div>
       </div>
