@@ -1,5 +1,5 @@
 const Menus = [
-  { id: 1, title: "Dashboard", src: "grid", href: "/" },
+  { id: 1, title: "Dashboard", src: "grid", href: "/dashboard" },
   { id: 2, title: "Users", src: "user", href: "/users" },
   { id: 3, title: "Reports", src: "reports", href: "/reports" },
   { id: 4, title: "Image", src: "image", href: "/image" },

@@ -1,4 +1,9 @@
 function Image() {
+  function handleClick (e) {
+    e.eventpreventDefault()
+    const input = document.getElementById('unpload')
+    input.addEventListener(onclick)
+  }
   return (
     <main className="bg-slate-900 w-full">
       <div className="flex flex-col items-center justify-center py-10">
@@ -7,7 +12,8 @@ function Image() {
         </h2>
         <div className=" bg-slate-800 h-60 w-2/3 my-5">
           <div className="flex justify-center items-center h-full border-dashed border-blue-800 border-8 w-full">
-            <input className="hidden" type="file" name="unpload" id="" />
+            <input className="hidden" type="file" name="unpload" id="unpload" />
+            <a onClick={(e)=> {handleClick(e)}} className="underline" href="#">Unpload Image</a>
           </div>
         </div>
       </div>
