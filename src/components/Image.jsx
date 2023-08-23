@@ -61,7 +61,6 @@ function Image() {
           </div>
         )}
       </div>
-      <button>Unpload Image</button>
     </main>
   );
 }
