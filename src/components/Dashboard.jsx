@@ -32,12 +32,11 @@ function Dashboard() {
       
       <hr className="my-3 border border-slate-600 rounded-lg mx-auto" />
         <div className="flex justify-around  mx-auto ">
-          <div className="bg-slate-800 h-32 w-1/5 rounded-md flex">
-            resum
-            <div className="w-full">
+          <div className="bg-slate-800 h-32 w-1/5 rounded-md flex py-5 px-5">
+           <span className="text-slate-400">Uso</span>
+            <div className="w-3/4 ">
               <ResponsiveContainer>
                 <LineChart
-                  className="flex-1"
                   width={300}
                   height={100}
                   data={data}
@@ -58,7 +57,7 @@ function Dashboard() {
             <span className="h-12 w-2 bg-purple-800 rounded-md"></span>
             <div className="flex flex-col text-left">
             <span className="text-slate-400">Usuarios</span>
-            <span className="text-3xl font-bold">25</span>
+            <span className="text-3xl font-bold text-white">25</span>
             </div>
             <div className="bg-slate-700 h-10 w-10 rounded-md px-2 py-2  ">
               <img src="src/assets/user-group.png" alt="" />
