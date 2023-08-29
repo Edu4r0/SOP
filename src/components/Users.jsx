@@ -5,7 +5,7 @@ function Users() {
 
   async function User() {
     // eslint-disable-next-line no-unused-vars
-    const response = fetch("http://localhost:5000/UsersList")
+    const response = await fetch("http://localhost:5000/UsersList")
     const data = await response.json()
     setDataUser(data)
   }
@@ -62,7 +62,6 @@ function Users() {
           </tbody>
         </table>
       </div>
-      <button onClick={User}>Click</button>
     </div>
   );
 }

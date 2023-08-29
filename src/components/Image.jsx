@@ -43,20 +43,21 @@ function Image() {
           </div>
         </div>
         {file && (
-          <div className="flex items-center justify-between px-2 py-2 h-12 w-2/3 bg-blue-800 rounded-lg">
-            <img src="" alt="" />
+          <div className="flex items-center justify-between px-2 py-2 h-12 w-2/3 bg-slate-800 text-white rounded-lg">
             <span>{filename}</span>
             <div className="flex gap-5">
               <button
                 onClick={handleURL}
-                className="py-2 px-2 rounded-sm bg-lime-500 border-none"
+                className="px-2 py-2 rounded-sm hover:bg-slate-600 bg-slate-700 border-blue-900"
               >
                 <img src="/src/assets/eye.png" alt="" />
               </button>
 
-              <span className="py-2 px-2 rounded-sm bg-red-800 border-none">
+              <button className="py-2 px-2 rounded-sm hover:bg-slate-600 bg-slate-700 border-none"
+                onClick={(e)=>{setfile("")}}
+                >
                 <img src="/src/assets/trash-bin.png" alt="" />
-              </span>
+              </button>
             </div>
           </div>
         )}
