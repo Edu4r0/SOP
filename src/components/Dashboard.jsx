@@ -1,5 +1,6 @@
 import Days from "../data/Days";
 import data from "../data/LineChart";
+import CardAnalytics from "./Card-Analytics";
 import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
 
 function Dashboard() {
@@ -53,18 +54,9 @@ function Dashboard() {
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-slate-800 h-32 w-1/5 rounded-md px-5 py-5 flex justify-between text-right">
-            <span className="h-12 w-2 bg-purple-800 rounded-md"></span>
-            <div className="flex flex-col text-left">
-            <span className="text-slate-400">Usuarios</span>
-            <span className="text-3xl font-bold text-white">25</span>
-            </div>
-            <div className="bg-slate-700 h-10 w-10 rounded-md px-2 py-2  ">
-              <img src="src/assets/user-group.png" alt="" />
-            </div>
-          </div>
-          <div className="bg-slate-800 h-32 w-1/5 rounded-md"></div>
-          <div className="bg-slate-800 h-32 w-1/5 rounded-md"></div>
+          <CardAnalytics name="Users" color="bg-purple-800" number="25" />
+          <CardAnalytics name="Image" color="bg-blue-800" number="2"/>
+          <CardAnalytics name="Survey" color="bg-slate-900" number="12"/>
         </div>
       </div>
     </main>
