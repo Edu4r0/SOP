@@ -54,7 +54,7 @@ function Image() {
               </button>
 
               <button className="py-2 px-2 rounded-sm hover:bg-slate-600 bg-slate-700 border-none"
-                onClick={(e)=>{setfile("")}}
+                onClick={()=>{setfile("")}}
                 >
                 <img src="/src/assets/trash-bin.png" alt="" />
               </button>
