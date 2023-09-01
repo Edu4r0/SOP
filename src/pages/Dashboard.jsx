@@ -1,5 +1,6 @@
 import Days from "../data/Days";
 import data from "../data/LineChart";
+import { useNavigate } from "react-router-dom";
 import CardAnalytics from "../components/Card-Analytics";
 import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
 import UsersTable from "../components/UsersTable";
@@ -11,6 +12,11 @@ function Dashboard() {
     return days[day];
   });
 
+  const navigate = useNavigate()
+
+  function users() {
+    navigate("/users")
+  }
   return (
     <main className="bg-slate-900 w-full">
       <div className="py-5">
@@ -31,10 +37,10 @@ function Dashboard() {
               alt=""
             />
           </div>
-          <div className="bg-slate-700 h-44 w-2/5 rounded-md flex-none overflow-y-hidden ">
-            <a href="\users">
-              <UsersTable />
-            </a>
+          <div onClick={()=>{users()}} className="bg-slate-700 h-44 w-2/5 rounded-md flex-none overflow-y-hidden cursor-pointer ">
+
+              <UsersTable className="hover:bg-black" />
+
           </div>
         </div>
 

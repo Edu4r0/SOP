@@ -2,6 +2,7 @@ import Nav from "./components/Nav";
 import Users from "./pages/Users";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
+import Image from "./pages/Image";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Survey from "./pages/Survey";

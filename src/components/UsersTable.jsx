@@ -15,7 +15,7 @@ function UsersTable() {
   }
  User();
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-tl-md">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-tl-md rounded-tr-md">
       <table className="min-w-full">
         <thead className="uppercase text-sm text-slate-400 bg-slate-950 text-center">
           <tr>
