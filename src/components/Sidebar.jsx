@@ -1,8 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Menus from "../data/Sidebar";
 
 function Sidebar() {
   const [open, setopen] = useState(true);
+  const navigate = useNavigate()
+
+  function handleredirect(index) {
+    let src = Menus[index].href
+    console.log(index)
+    navigate(src)
+  }
   return (
     <div>
       <div
@@ -15,7 +23,7 @@ function Sidebar() {
           className={`absolute top-9 -right-3 border-2 border-blue-800 cursor-pointer ${
             open ? "rotate-90" : "-rotate-90"
           } bg-white w-7 rounded-full duration-300`}
-          src="src/assets/expand.svg"
+          src="/expand.svg"
           alt=""
         />
 
@@ -27,11 +35,11 @@ function Sidebar() {
     ${open ? "" : "w-10"}
     duration-150`}
             >
-              <img className="" src={`src/assets/${menu.src}.png`} alt="" />
+              <img className="" src={`/${menu.src}.png`} alt="" />
 
               <a
                 className={`font-semibold  ${open ? "w-36" : "scale-0"}`}
-                href={menu.href}
+                onClick={()=> handleredirect(menu.id)}
               >
                 {menu.title}
               </a>

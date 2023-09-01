@@ -18,8 +18,10 @@ function Survey() {
             
           </div>
         </div>
-        <div className="w-1/3 h-60 px-5 py-5 rounded-md hover:bg-slate-600 cursor-pointer bg-slate-700 flex justify-center items-center text-center">
-          <span className="text-5xl font-bold text-slate-900 hover:text-blue-900">Modo <br /> Clasico</span>
+        <div className="w-1/3 h-60 px-5 py-5 rounded-md hover:bg-slate-600  bg-slate-700 flex justify-center items-center text-center">
+       <a href="survey\surveyclassi">
+       <span className="text-5xl font-bold text-slate-900 hover:text-blue-900">Modo <br /> Clasico</span>
+       </a>
         </div>
       </div>
     </div>

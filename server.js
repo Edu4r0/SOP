@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 let users = [];
+let survey = [];
 
 
 app.get('/User', (req, res) => {
@@ -38,9 +39,34 @@ app.get('/User', (req, res) => {
         return res.json(userData);
     }
 });
+app.post('/Survey', (req, res) => {
+    const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
+
+    if (!questionData || !questionData.titulo || !questionData.opciones) {
+        return res.status(400).json({ error: 'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.' });
+    }
+
+    survey.push(questionData)
+    return res.json(questionData);
+});
+
 
 app.get('/UsersList', (req, res) => {
     return res.json(users);
+});
+
+app.delete('/UsersListDelete', (req, res) => {
+    users = []
+    return res.json(users);
+});
+
+app.get('/SurveyListDelete', (req, res) => {
+    survey = []
+    return res.json(survey);
+});
+
+app.get('/SurveyList', (req, res) => {
+    return res.json(survey);
 });
 
 app.listen(PORT, () => {

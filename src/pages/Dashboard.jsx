@@ -33,7 +33,7 @@ function Dashboard() {
             </div>
             <img
               className="relative h-48 bottom-5 "
-              src="src/assets/undraw_welcoming.svg"
+              src="/undraw_welcoming.svg"
               alt=""
             />
           </div>

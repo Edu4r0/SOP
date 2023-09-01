@@ -10,7 +10,7 @@ function CardAnalytics(nombre) {
         <span className="text-3xl font-bold text-white">{number}</span>
       </div>
       <div className="bg-slate-900 h-10 w-10 rounded-md px-2 py-2  ">
-        <img src={`src/assets/${image}.png`} alt="" />
+        <img src={`/${image}.png`} alt="" />
       </div>
     </div>
     </a>
