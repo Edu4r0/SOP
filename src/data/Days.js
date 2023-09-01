@@ -1,10 +1,10 @@
 const Days = [
     {
-        1: 'Monday',
-        2: 'Thuesday',
-        3: ' Wednesday',
-        4: 'Thursday',
-        5: 'Friday'
+        1: 'Lunes',
+        2: 'Martes',
+        3: 'Miercoles',
+        4: 'Jueves',
+        5: 'Viernes'
     }
 ]
 

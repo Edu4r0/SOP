@@ -1,11 +1,10 @@
 import Nav from "./components/Nav";
-import Users from "./components/Users";
-import Image from "./components/Image";
-import Login from "./components/Login";
+import Users from "./pages/Users";
+import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Survey from "./components/Survey";
+import Dashboard from "./pages/Dashboard";
+import Survey from "./pages/Survey";
 function App() {
 
   const SingIn = () => {

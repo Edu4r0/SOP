@@ -14,7 +14,7 @@ function Login() {
     password.length < 6
       ? seterror(!error)
       : signInWithEmailAndPassword(database, email, password).then((data) => {
-          console.log(data)
+          console.log(data);
           history("/dashboard");
         });
   }
@@ -36,7 +36,7 @@ function Login() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              Iniciar Sesion
             </h1>
             <form
               onSubmit={handleSubmit}
@@ -45,7 +45,7 @@ function Login() {
             >
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Your email
+                  Correo
                 </label>
                 <input
                   type="email"
@@ -58,7 +58,7 @@ function Login() {
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Password
+                  Contraseña
                 </label>
                 <input
                   type="password"
@@ -72,7 +72,7 @@ function Login() {
               {error ? (
                 <div>
                   <p className="text-red-700 text-center animate-pulse">
-                    Invalid 6 charaters required
+                    Invalido 6 caracteres requeridos
                   </p>
                 </div>
               ) : (
@@ -84,22 +84,22 @@ function Login() {
                   href="#"
                   className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Forgot password?
+                  Olvidaste tu contraseña?
                 </a>
               </div>
               <button
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-800 "
               >
-                Sign in
+                Iniciar sesion
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
+                No tienes una cuenta todavía?{" "}
                 <a
                   href="#"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Sign up
+                  Registrate
                 </a>
               </p>
             </form>
