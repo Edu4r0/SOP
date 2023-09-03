@@ -4,6 +4,7 @@ function SurveyCreate() {
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
+  const [loading, setloading] = useState(false);
 
   const questionData = {
     titulo: "¿Cuál es el mejor lenguaje de programación?",
@@ -39,8 +40,13 @@ function SurveyCreate() {
 
   const addAnswer = () => {
     if (newAnswer.trim() !== "") {
-      setAnswers([...answers, { textoRespuesta: newAnswer, isCorrect: false }]);
-      setNewAnswer("");
+      if (answers.length < 4 ) {
+        setAnswers([
+          ...answers,
+          { textoRespuesta: newAnswer, isCorrect: false },
+        ]);
+        
+      }
     }
   };
 
@@ -63,12 +69,11 @@ function SurveyCreate() {
     };
     setQuestion(questionData);
     setAnswers("");
-    console.log(answers);
   };
 
   return (
     <div className="bg-slate-900 w-full py-10 px-10 flex ">
-      <div className="bg-slate-600 rounded-md h-2/3 w-1/3 gap-10 text-white px-5 py-5">
+      <div className="bg-slate-600 rounded-md h-4/5 w-1/3 gap-10 text-white px-5 py-5">
         <div className="text-center rounded-md">
           <h2 className="text-gray-100 text-2xl font-bold">
             Diseñador de Preguntas
@@ -87,35 +92,56 @@ function SurveyCreate() {
         </div>
         <div>
           <span className="">Opciones</span>
-          <hr className="w-full py-2" />
-          <ul className="flex flex-col gap-2">
-            {answers &&
-              answers.map((answer, index) => (
-                <li
-                  className="flex justify-between bg-slate-800 px-2 py-2 rounded-md"
-                  key={index}
-                >
-                  {answer.textoRespuesta}
-                  <button
-                    className="bg-red-500 rounded-md py-1 px-2"
-                    onClick={() => removeAnswer(index)}
+          <hr className="w-full py-1" />
+          <div className=" h-52 overflow-x-hidden">
+            <ul className="flex flex-col gap-2">
+              {answers.length > 0 ? (
+                answers.map((answer, index) => (
+                  <li
+                    className="flex justify-between bg-slate-800 px-2 py-2 rounded-md"
+                    key={index}
                   >
-                    Eliminar
-                  </button>
-                </li>
-              ))}
-          </ul>
-          <div>
+                    {answer.textoRespuesta}
+                    <button
+                      className="bg-red-500 rounded-md px-2 hover:bg-red-400"
+                      onClick={() => removeAnswer(index)}
+                    >
+                      Eliminar
+                    </button>
+                  </li>
+                ))
+              ) : (
+                <div className="flex justify-center my-20">
+                  <span>No hay datos</span>
+                </div>
+              )}
+            </ul>
+          </div>
+          <div className="py-2 flex justify-between">
             <input
               type="text"
+              className=" outline-none w-2/3 h-1/6 bg-slate-800 rounded-md px-1 py-1"
               value={newAnswer}
               onChange={(e) => setNewAnswer(e.target.value)}
               placeholder="Nueva respuesta"
             />
-            <button onClick={addAnswer}>Agregar Respuesta</button>
+            <button
+              className="bg-blue-800 hover:bg-blue-700 rounded-md px-2 py-1"
+              onClick={addAnswer}
+            >
+              Agregar
+            </button>
           </div>
         </div>
-        <button onClick={saveQuestion}>Guardar Pregunta</button>
+        <div className="flex  justify-center items-end px-2 bg-slate-700 hover:bg-slate-800 rounded-md">
+          <button disabled={answers.length >= 4} className="py-2 " onClick={saveQuestion}>
+            {loading ? (
+              <div className="h-4 w-4 border-4 rounded-full border-gray-900 shadow-md border-r-transparent animate-spin "></div>
+            ) : (
+              "Añadir pregunta"
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
