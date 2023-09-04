@@ -3,20 +3,25 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 function Login() {
-  const [error, seterror] = useState(false);
+  const [error, seterror] = useState("");
 
   const history = useNavigate();
 
-  function handleSubmit(e) {
+async  function handleSubmit(e) {
     e.preventDefault();
+
     const email = e.target.email.value;
     const password = e.target.password.value;
-    password.length < 6
-      ? seterror(!error)
-      : signInWithEmailAndPassword(database, email, password).then((data) => {
-          console.log(data);
-          history("/dashboard");
-        });
+   
+    try {
+      // eslint-disable-next-line no-unused-vars
+      await  signInWithEmailAndPassword(database, email, password).then((data) => {
+        history("/dashboard");
+      });
+
+    } catch (error) {
+      seterror(error.message)
+    }
   }
 
   return (
@@ -69,14 +74,12 @@ function Login() {
                   required=""
                 />
               </div>
-              {error ? (
+              {error && (
                 <div>
                   <p className="text-red-700 text-center animate-pulse">
-                    Invalido 6 caracteres requeridos
+                    {error}
                   </p>
                 </div>
-              ) : (
-                ""
               )}
               <div className="flex items-center justify-between">
                 <div className="flex items-start"></div>
