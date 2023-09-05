@@ -42,7 +42,7 @@ app.get('/User', (req, res) => {
 app.post('/Survey', (req, res) => {
     const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
 
-    if (!questionData || !questionData.titulo || !questionData.opciones) {
+    if (!questionData) {
         return res.status(400).json({ error: 'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.' });
     }
 

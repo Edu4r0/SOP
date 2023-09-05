@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
@@ -6,46 +6,35 @@ function SurveyCreate() {
   const [newAnswer, setNewAnswer] = useState("");
   const [loading, setloading] = useState(false);
 
-  const questionData = {
-    titulo: "¿Cuál es el mejor lenguaje de programación?",
-    opciones: [
-      { textoRespuesta: "JavaScript", isCorrect: true },
-      { textoRespuesta: "PHP", isCorrect: false },
-      { textoRespuesta: "C++", isCorrect: false },
-      { textoRespuesta: "Kotlin", isCorrect: false },
-    ],
-  };
-  const [Survey, setSurvey] = useState("");
-
-  useEffect(() => {
-    async function postData() {
-      try {
-        const response = await fetch("http://localhost:5000/Survey", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(questionData),
-        });
-
-        const data = await response.json();
-        setSurvey(JSON.stringify(data));
-      } catch (error) {
-        console.error(error.message);
-      }
+  async function postData(questionData) {
+    try {
+      setloading(true);
+      const response = await fetch("http://localhost:5000/Survey", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(questionData),
+      });
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setloading(false);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
+  const handleCorrect = (index) => {
+    const updatedAnswers = [...answers];
+    updatedAnswers[index].isCorrect = !updatedAnswers[index].isCorrect;
+    setAnswers(updatedAnswers);
+  };
 
   const addAnswer = () => {
     if (newAnswer.trim() !== "") {
-      if (answers.length < 4 ) {
+      if (answers.length < 4) {
         setAnswers([
           ...answers,
           { textoRespuesta: newAnswer, isCorrect: false },
         ]);
-        
       }
     }
   };
@@ -59,15 +48,10 @@ function SurveyCreate() {
   const saveQuestion = () => {
     // Aquí puedes enviar question y answers a tu API o hacer lo que necesites con ellos
     const questionData = {
-      titulo: title,
-      opciones: [
-        answers.map((answer) => ({
-          textoRespuesta: answer,
-          isCorrect: true,
-        })),
-      ],
+      opciones: answers,
     };
     setQuestion(questionData);
+    postData(questionData);
     setAnswers("");
   };
 
@@ -98,7 +82,10 @@ function SurveyCreate() {
               {answers.length > 0 ? (
                 answers.map((answer, index) => (
                   <li
-                    className="flex justify-between bg-slate-800 px-2 py-2 rounded-md"
+                    onClick={() => handleCorrect(index)}
+                    className={`flex justify-between cursor-pointer ${
+                      answers[index].isCorrect ? "bg-green-400" : "bg-slate-800"
+                    } px-2 py-2 rounded-md`}
                     key={index}
                   >
                     {answer.textoRespuesta}
@@ -134,7 +121,7 @@ function SurveyCreate() {
           </div>
         </div>
         <div className="flex  justify-center items-end px-2 bg-slate-700 hover:bg-slate-800 rounded-md">
-          <button disabled={answers.length >= 4} className="py-2 " onClick={saveQuestion}>
+          <button className="py-2 " onClick={saveQuestion}>
             {loading ? (
               <div className="h-4 w-4 border-4 rounded-full border-gray-900 shadow-md border-r-transparent animate-spin "></div>
             ) : (
