@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import colors from "../data/Color";
 
 function SurveyClassic() {
   const [preguntaActual, setPreguntaActual] = useState(0);
@@ -38,7 +39,12 @@ function SurveyClassic() {
       }
     }, 1500);
   }
+  function color(index) {
+    
+    return colors[index].color;
 
+  }
+ 
   useEffect(() => {
     const intervalo = setInterval(() => {
       if (tiempoRestante > 0) setTiempoRestante((prev) => prev - 1);
@@ -73,7 +79,7 @@ function SurveyClassic() {
       </main>
     );
 
-  if (answersShown || preguntas.length > 0)
+  if (answersShown)
     return (
       <main className="app">
         <div className="lado-izquierdo">
@@ -81,7 +87,7 @@ function SurveyClassic() {
             <span> Pregunta {preguntaActual + 1} de</span> {preguntas.length}
           </div>
           <div className="titulo-pregunta">
-            {preguntas[preguntaActual].titulo}
+            {preguntas[preguntaActual].title}
           </div>
           <div>
             {
@@ -108,15 +114,11 @@ function SurveyClassic() {
     );
 
   return (
-    <main className="">
-      <div className="bg-red-600">
-        <div className="numero-pregunta">
+    <main className="bg-slate-950 text-white font-poppins h-screen px-5 py-5">
+      <div className="">
+        <div className="bg-slate-800 ">
           <span> Pregunta {preguntaActual + 1} de</span> {preguntas.length}
-        </div>
-        <div className="titulo-pregunta">
-          {preguntas.length > 0 ? preguntas[preguntaActual].titulo : ""}
-        </div>
-        <div>
+          <div >
           {!areDisabled ? (
             <span className="tiempo-restante">
               Tiempo restante: {tiempoRestante}{" "}
@@ -137,10 +139,17 @@ function SurveyClassic() {
             </button>
           )}
         </div>
+        </div>
+        
+        
       </div>
-      <div className="lado-derecho">
-        {preguntas.length > 0 ? preguntas[preguntaActual].opciones.map((respuesta) => (
+      <div className="flex justify-center items-center text-2xl">
+          {preguntas.length > 0 ? preguntas[preguntaActual].title: ""}
+        </div>
+      <div className="flex justify-between gap-5 h-2/3 items-end">
+        {preguntas.length > 0 ? preguntas[preguntaActual].opciones.map((respuesta,index) => (
           <button
+          className={`${color(index)} rounded-md  h-40 w-1/3`}
             disabled={areDisabled}
             key={respuesta.textoRespuesta}
             onClick={(e) => handleAnswerSubmit(respuesta.isCorrect, e)}
