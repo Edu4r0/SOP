@@ -16,7 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.7.3",
-    "sonner": "^0.7.0"
+    "sonner": "^0.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
