@@ -1,7 +1,7 @@
-function Nav() {
+function Header() {
   return (
     <>
-      <nav className="flex bg-gray-950 items-center justify-between flex-wrap px-5 py-2">
+      <header className="flex bg-gray-950 items-center justify-between flex-wrap px-5 py-2">
         <div className="w-1/7">
           <a href="https://flowbite.com/" className="flex items-center">
             <img
@@ -30,10 +30,9 @@ function Nav() {
           src={"https://unavatar.io/gravatar/eduardobarboza1520@gmail.com"}
           alt=""
         />
-      </nav>
-      <hr className="h-px  bg-slate-600 border-0 " />
+      </header>
     </>
   );
 }
 
-export default Nav;
+export default Header;

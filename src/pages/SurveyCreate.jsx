@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { Toaster, toast } from "sonner";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
-  const [loading, setloading] = useState(false);
 
   async function postData(questionData) {
     try {
-      setloading(true);
+      toast.loading("Cargando..");
       const response = await fetch("http://localhost:5000/Survey", {
         method: "POST",
         headers: {
@@ -16,10 +16,9 @@ function SurveyCreate() {
         },
         body: JSON.stringify(questionData),
       });
+      toast.success("Enviado con exito");
     } catch (error) {
-      console.error(error.message);
-    } finally {
-      setloading(false);
+      toast.error(`Error en el envio ${error.message} `);
     }
   }
   const handleCorrect = (index) => {
@@ -46,9 +45,10 @@ function SurveyCreate() {
   };
 
   const saveQuestion = () => {
+    
     // Aquí puedes enviar question y answers a tu API o hacer lo que necesites con ellos
     const questionData = {
-      title : title,
+      title: title,
       opciones: answers,
     };
     setQuestion(questionData);
@@ -123,14 +123,11 @@ function SurveyCreate() {
         </div>
         <div className="flex  justify-center items-end px-2 bg-slate-700 hover:bg-slate-800 rounded-md">
           <button className="py-2 " onClick={saveQuestion}>
-            {loading ? (
-              <div className="h-4 w-4 border-4 rounded-full border-gray-900 shadow-md border-r-transparent animate-spin "></div>
-            ) : (
-              "Añadir pregunta"
-            )}
+            Añadir Pregunta
           </button>
         </div>
       </div>
+      <Toaster richColors closeButton theme="system" />
     </div>
   );
 }

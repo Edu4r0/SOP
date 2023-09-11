@@ -1,5 +1,5 @@
-import Nav from "./components/Nav";
 import Users from "./pages/Users";
+import Taks from "./pages/Taks";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
 import Image from "./pages/Image";
@@ -7,7 +7,9 @@ import { BrowserRouter, Routes , Route } from "react-router-dom";
 import SurveyClassic from "./pages/SurveryClassic";
 import Dashboard from "./pages/Dashboard";
 import Survey from "./pages/Survey";
+import Reports from "./pages/Reports";
 import SurveyCreate from "./pages/SurveyCreate";
+import Header from "./components/Header";
 function App() {
 
   const SingIn = () => {
@@ -24,7 +26,7 @@ function App() {
     return (
       <>
         <header className="font-poppins">
-          <Nav />
+          <Header />
         </header>
 
         <div className="flex font-poppins">
@@ -36,12 +38,45 @@ function App() {
       </>
     );
   };
+  const Report = () => {
+    return (
+      <>
+        <header className="font-poppins">
+          <Header />
+        </header>
+
+        <div className="flex font-poppins">
+          <nav>
+            <Sidebar />
+          </nav>
+          <Reports />
+        </div>
+      </>
+    );
+  };
+
+  const Schedule = () => {
+    return (
+      <>
+        <header className="font-poppins">
+          <Header />
+        </header>
+
+        <div className="flex font-poppins">
+          <nav>
+            <Sidebar />
+          </nav>
+          <Taks />
+        </div>
+      </>
+    );
+  };
 
   const User = () => {
     return (
       <div>
         <header className="font-poppins">
-          <Nav />
+          <Header />
         </header>
 
         <div className="flex font-poppins">
@@ -58,7 +93,7 @@ function App() {
     return (
       <div>
         <header className="font-poppins">
-          <Nav />
+          <Header />
         </header>
 
         <div className="flex font-poppins">
@@ -75,7 +110,7 @@ function App() {
     return (
       <div>
         <header className="font-poppins">
-          <Nav />
+          <Header />
         </header>
 
         <div className="flex font-poppins">
@@ -93,7 +128,7 @@ function App() {
     return (
       <div>
         <header className="font-poppins">
-          <Nav />
+          <Header />
         </header>
 
         <div className="flex font-poppins">
@@ -117,6 +152,8 @@ function App() {
           <Route path="/survey" element={<Quizz />} />
           <Route path="/survey/surveyclassi" element={<SurveyClassic />} />
           <Route path="/survey/surveycreate" element={<QuizzCreate />} />
+          <Route path="/tasks" element={<Schedule />} />
+          <Route path="/reports" element={<Report />} />
 
           
         </Routes>

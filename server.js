@@ -12,11 +12,11 @@ let users = [];
 let survey = [];
 
 
-app.get('/User', (req, res) => {
+app.post('/User', (req, res) => {
     const { name, status } = req.query;
 
     if (!name || !status) {
-        return res.status(400).json({ error: 'Se requieren los parámetros "name" , "status" y "last".' });
+        return res.status(400).json({ error: 'Se requieren los parámetros "name" , "status"' });
     }
 
     const statusBool = status.toLowerCase() === 'true';
@@ -55,15 +55,7 @@ app.get('/UsersList', (req, res) => {
     return res.json(users);
 });
 
-app.delete('/UsersListDelete', (req, res) => {
-    users = []
-    return res.json(users);
-});
 
-app.get('/SurveyListDelete', (req, res) => {
-    survey = []
-    return res.json(survey);
-});
 
 app.get('/SurveyList', (req, res) => {
     return res.json(survey);
