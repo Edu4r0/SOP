@@ -181,7 +181,7 @@ function App() {
         <Route path="/users" element={<User />} />
         <Route path="/image" element={<Images />} />
         <Route path="/survey" element={<Quizz />} />
-        <Route path="/survey/surveyclassi" element={<SurveyClassic />} />
+        <Route path="/survey/surveyclassi/:user" element={<SurveyClassic />} />
         <Route path="/survey/surveycreate" element={<QuizzCreate />} />
         <Route path="/tasks" element={<Schedule />} />
         <Route path="/reports" element={<Report />} />

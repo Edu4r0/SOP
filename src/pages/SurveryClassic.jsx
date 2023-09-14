@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import colors from "../data/Color";
 
 function SurveyClassic() {
+  const { user } = useParams();
+
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [puntuación, setPuntuación] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -16,7 +19,6 @@ function SurveyClassic() {
         const response = await fetch("http://localhost:5000/SurveyList");
         const data = await response.json();
         setpreguntas(data);
-        console.log(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -97,31 +99,38 @@ function SurveyClassic() {
   if (answersShown)
     return (
       <main className="bg-slate-800 h-screen flex justify-center items-center text-white font-poppins">
-        <div className="bg-slate-700 flex justify-between flex-col h-full w-1/3 rounded-md px-5 py-5 text-center">
+        <div className="bg-slate-700 flex justify-between flex-col h-4/5 w-1/3 rounded-md px-5 py-5 text-center">
           <div className="numero-pregunta">
             <span className="bg-slate-900 w-full font-bold flex justify-center py-2 rounded-md fo">
               Resumen
             </span>
           </div>
-          <div className="flex flex-col gap-5 my-2 overflow-y-hidden">
-            <div className="bg-slate-950 flex px-2 gap-2 py-2">
-              <span className="bg-white  h-10 w-10">
-                <img src="https://ui-avatars.com/api/?name=aux-sistemas&background=FFFFFF&bold=true&rounded=true" alt="aux-sistemas" />
+          <div className="flex flex-col gap-5 my-2 overflow-y-visible">
+            <div className="bg-slate-950 flex px-4 justify-between rounded-md gap-2 py-2">
+              <span className="bg-white rounded-full flex gap-2 h-10 w-10">
+                <img
+                  src={`https://ui-avatars.com/api/?name=${user}&background=FFFFFF&bold=true&rounded=true`}
+                  alt="aux-sistemas"
+                />
+              <p className="uppercase">{user}</p>
+
               </span>
-              <p>AUX-SISTEMAS</p>
+              <div className="flex gap-2">
+              <span>Puntos:</span>
+              <span className="">dsdds</span>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <div className="bg-slate-800 h-20  w-full"></div>
-              <div className="bg-slate-800 h-20  w-full"></div>
-              <div className="bg-slate-800 h-20  w-full"></div>
-              <div className="bg-slate-800 h-20  w-full"></div>
+              <div className="bg-slate-800 h-20 rounded-md w-full"></div>
+              <div className="bg-slate-800 h-20 rounded-md w-full"></div>
+            
             </div>
             {preguntas.map((pregunta) => (
               <div
                 className="flex gap-2 flex-col justify-center items-center"
                 key={pregunta.title}
               >
-                <span className="bg-slate-800 flex justify-center w-2/3 py-1 rounded-md">
+                <span className="bg-slate-800 flex justify-center w-full py-1 rounded-md">
                   {pregunta.title}
                 </span>
                 {pregunta.opciones.map((opcion, index) => (
@@ -141,18 +150,32 @@ function SurveyClassic() {
             ))}
           </div>
           <button
-            className="flex flex-row-reverse justify-center gap-x-2 bg-slate-900"
+            className="flex justify-center gap-x-2 bg-blue-600 py-2 rounded-md px-10"
             onClick={() => {
               window.location("/survey/surveyclassi");
             }}
           >
-            <img src="/x.png" alt="" />
             Salir
           </button>
         </div>
       </main>
     );
 
+  if (preguntas.length === 0)
+    return (
+      <main className="bg-slate-800 h-screen flex justify-center items-center text-white font-poppins">
+        <div className="flex justify-center items-center ">
+          <div>
+            <span className="text-3xl font-bold">404 No Found</span>
+            <br />
+            <button className="my-5 bg-blue-600 rounded-md px-10 py-2">
+              Salir
+            </button>
+          </div>
+          <img className="w-3/4" src="/404 Error.svg" alt="404" />
+        </div>
+      </main>
+    );
   return (
     <main className="bg-slate-950 text-white font-poppins h-screen px-5 py-5">
       <div className="">
@@ -193,27 +216,20 @@ function SurveyClassic() {
         {preguntas.length > 0 ? preguntas[preguntaActual].title : ""}
       </div>
       <div className="flex justify-between gap-5  items-end">
-        {preguntas.length > 0 ? (
-          preguntas[preguntaActual].opciones.map((respuesta, index) => (
-            <button
-              className={`${color(
-                index
-              )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
-              disabled={areDisabled}
-              key={respuesta.textoRespuesta}
-              onClick={() =>
-                handleAnswerSubmit(
-                  respuesta.isCorrect,
-                  respuesta.textoRespuesta
-                )
-              }
-            >
-              {respuesta.textoRespuesta}
-            </button>
-          ))
-        ) : (
-          <div>No hay preguntas por hoy</div>
-        )}
+        {preguntas[preguntaActual].opciones.map((respuesta, index) => (
+          <button
+            className={`${color(
+              index
+            )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
+            disabled={areDisabled}
+            key={respuesta.textoRespuesta}
+            onClick={() =>
+              handleAnswerSubmit(respuesta.isCorrect, respuesta.textoRespuesta)
+            }
+          >
+            {respuesta.textoRespuesta}
+          </button>
+        ))}
       </div>
     </main>
   );
