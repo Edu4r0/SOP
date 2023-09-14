@@ -3,12 +3,14 @@ import { Toaster, toast } from "sonner";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [question, setQuestion] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
 
   async function postData(questionData) {
     try {
       toast.loading("Cargando..");
+      // eslint-disable-next-line no-unused-vars
       const response = await fetch("http://localhost:5000/Survey", {
         method: "POST",
         headers: {

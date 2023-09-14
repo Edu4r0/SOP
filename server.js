@@ -1,6 +1,6 @@
-import express from 'express';
-import process from 'process';
-import cors from 'cors';
+import express from "express";
+import process from "process";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,22 +8,28 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
+let tasks = [];
 let users = [];
 let survey = [];
 
+/* <-- POST --> */
 
-app.post('/User', (req, res) => {
+
+
+app.post("/User", (req, res) => {
     const { name, status } = req.query;
 
     if (!name || !status) {
-        return res.status(400).json({ error: 'Se requieren los parámetros "name" , "status"' });
+        return res
+            .status(400)
+            .json({ error: 'Se requieren los parámetros "name" , "status"' });
     }
 
-    const statusBool = status.toLowerCase() === 'true';
+    const statusBool = status.toLowerCase() === "true";
     const date = new Date();
-    const lascontact = date.toLocaleString()
+    const lascontact = date.toLocaleString();
     // Buscar si el usuario ya existe en la lista
-    const existingUser = users.find(user => user.name === name);
+    const existingUser = users.find((user) => user.name === name);
 
     if (existingUser) {
         existingUser.status = statusBool; // Actualizar el estado
@@ -32,34 +38,56 @@ app.post('/User', (req, res) => {
         const userData = {
             name,
             status: statusBool,
-            last: lascontact
+            last: lascontact,
         };
 
         users.push(userData);
         return res.json(userData);
     }
 });
-app.post('/Survey', (req, res) => {
+app.post("/Survey", (req, res) => {
     const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
 
     if (!questionData) {
-        return res.status(400).json({ error: 'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.' });
+        return res
+            .status(400)
+            .json({
+                error:
+                    'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.',
+            });
     }
 
-    survey.push(questionData)
+    survey.push(questionData);
     return res.json(questionData);
 });
 
+app.post("/Tasks", (req, res) => {
+    const task = req.body;
+    console.log(tasks)
+    if (!task || !task.name) {
+        return res
+            .status(400)
+            .json({
+                error: 'Se requieren un objeto JSON valido con "tasks" , "fecha" en el cuerpo de la solicitud.'
+            });
+    }
+    tasks.push(task)
+    return res.json(tasks)
+});
 
-app.get('/UsersList', (req, res) => {
+/* <-- GET --> */
+
+app.get("/UsersList", (req, res) => {
     return res.json(users);
 });
 
-
-
-app.get('/SurveyList', (req, res) => {
+app.get("/SurveyList", (req, res) => {
     return res.json(survey);
 });
+
+app.get("/TasksList", (req, res) => {
+    return res.json(tasks)
+})
 
 app.listen(PORT, () => {
     console.log(`Servidor API corriendo en el puerto ${PORT}`);

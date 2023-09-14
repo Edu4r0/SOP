@@ -3,20 +3,21 @@ import Taks from "./pages/Taks";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
 import Image from "./pages/Image";
-import { BrowserRouter, Routes , Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SurveyClassic from "./pages/SurveryClassic";
 import Dashboard from "./pages/Dashboard";
 import Survey from "./pages/Survey";
 import Reports from "./pages/Reports";
 import SurveyCreate from "./pages/SurveyCreate";
 import Header from "./components/Header";
+import Config from "./pages/Config";
+import Games from "./pages/Games";
 function App() {
-
   const SingIn = () => {
     return (
       <>
         <main>
-          <Login/>
+          <Login />
         </main>
       </>
     );
@@ -34,6 +35,38 @@ function App() {
             <Sidebar />
           </nav>
           <Dashboard />
+        </div>
+      </>
+    );
+  };
+  const Settings = () => {
+    return (
+      <>
+        <header className="font-poppins">
+          <Header />
+        </header>
+
+        <div className="flex font-poppins">
+          <nav>
+            <Sidebar />
+          </nav>
+          <Config />
+        </div>
+      </>
+    );
+  };
+  const Game = () => {
+    return (
+      <>
+        <header className="font-poppins">
+          <Header />
+        </header>
+
+        <div className="flex font-poppins">
+          <nav>
+            <Sidebar />
+          </nav>
+          <Games />
         </div>
       </>
     );
@@ -123,7 +156,6 @@ function App() {
     );
   };
 
-
   const QuizzCreate = () => {
     return (
       <div>
@@ -135,31 +167,29 @@ function App() {
           <nav>
             <Sidebar />
           </nav>
-          < SurveyCreate />
+          <SurveyCreate />
         </div>
       </div>
     );
   };
 
-
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SingIn />} />
-          <Route path="/dashboard" element={<Layout />} />
-          <Route path="/users" element={<User />} />
-          <Route path="/image" element={<Images />} />
-          <Route path="/survey" element={<Quizz />} />
-          <Route path="/survey/surveyclassi" element={<SurveyClassic />} />
-          <Route path="/survey/surveycreate" element={<QuizzCreate />} />
-          <Route path="/tasks" element={<Schedule />} />
-          <Route path="/reports" element={<Report />} />
-
-          
-        </Routes>
-      </BrowserRouter>
-    );
-
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SingIn />} />
+        <Route path="/dashboard" element={<Layout />} />
+        <Route path="/users" element={<User />} />
+        <Route path="/image" element={<Images />} />
+        <Route path="/survey" element={<Quizz />} />
+        <Route path="/survey/surveyclassi" element={<SurveyClassic />} />
+        <Route path="/survey/surveycreate" element={<QuizzCreate />} />
+        <Route path="/tasks" element={<Schedule />} />
+        <Route path="/reports" element={<Report />} />
+        <Route path="/setting" element={<Settings />} />
+        <Route path="/games" element={<Game />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
