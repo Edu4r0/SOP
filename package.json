@@ -17,7 +17,7 @@
     "react-dom": "^18.2.0",
     "recharts": "^2.7.3",
     "resend": "^1.0.0",
-    "sonner": "^0.7.0"
+    "sonner": "^0.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
