@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
-
 function Taks() {
   const [tasks, settasks] = useState([]);
 
@@ -38,11 +37,7 @@ function Taks() {
       toast.error("Error al guardar tareas ");
     }
   }
-  function name(params) {
-    
-  }
-
-  
+  function name(params) {}
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +50,7 @@ function Taks() {
       date,
       completed: false,
     };
-    postData(data)
+    postData(data);
   }
   function handleComplet(index) {
     const updatecompleted = [...tasks];
@@ -126,15 +121,18 @@ function Taks() {
                 </div>
                 <span>{task.date}</span>
                 <div className="flex justify-end">
-                  <button onClick={()=>handleRemove(index)}  className="w-10 h-10 px-2 py-2 bg-red-600">
-                    
-                  </button>
+                  <button
+                    onClick={() => handleRemove(index)}
+                    className="w-10 h-10 px-2 py-2 bg-red-600"
+                  ></button>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="text-white">No hay datos</div>
+          <div>
+            <div className="text-white">No hay datos</div>
+          </div>
         )}
       </div>
       <Toaster richColors closeButton theme="system" />

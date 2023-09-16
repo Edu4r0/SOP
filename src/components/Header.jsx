@@ -27,7 +27,7 @@ function Header() {
         </div>
         <img
           className="h-10 rounded-full"
-          src={"https://unavatar.io/gravatar/eduardobarboza1520@gmail.com"}
+          src={`https://ui-avatars.com/api/?name=admin&background=FFFFFF&bold=true&rounded=true`}
           alt=""
         />
       </header>

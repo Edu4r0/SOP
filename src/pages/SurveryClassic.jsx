@@ -107,23 +107,53 @@ function SurveyClassic() {
           </div>
           <div className="flex flex-col gap-5 my-2 overflow-y-visible">
             <div className="bg-slate-950 flex px-4 justify-between rounded-md gap-2 py-2">
-              <span className="bg-white rounded-full flex gap-2 h-10 w-10">
-                <img
-                  src={`https://ui-avatars.com/api/?name=${user}&background=FFFFFF&bold=true&rounded=true`}
-                  alt="aux-sistemas"
-                />
-              <p className="uppercase">{user}</p>
-
-              </span>
               <div className="flex gap-2">
-              <span>Puntos:</span>
-              <span className="">dsdds</span>
+                <span className="bg-white rounded-full h-10 w-10">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${user}&background=FFFFFF&bold=true&rounded=true`}
+                    alt="aux-sistemas"
+                  />
+                </span>
+
+                <span className="uppercase ">{user}</span>
+              </div>
+
+              <div className="flex gap-2">
+                <span>Puntos:</span>
+                <span className="">dsdds</span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <div className="bg-slate-800 h-20 rounded-md w-full"></div>
-              <div className="bg-slate-800 h-20 rounded-md w-full"></div>
-            
+              <div className="bg-green-700 flex gap-2 h-20 rounded-md py-2 px-2">
+                <div className="flex flex-col w-full">
+                  <div className="flex gap-2">
+                    <img
+                      className="h-6 w-6"
+                      src="/check-circle.png"
+                      alt="Correcto"
+                    />
+                    <span className="text-slate-100">Correctas</span>
+                  </div>
+                  <div className="flex justify-center">
+                    <span className="px-2 py-2 text-2xl">{puntuación}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-red-700 gap-2 flex h-20 rounded-md py-2 px-2">
+                <div className="flex flex-col w-full">
+                  <div className="flex gap-2">
+                    <img
+                      className="h-6 w-6"
+                      src="/x-circle.png"
+                      alt="Incorrecto"
+                    />
+                    <span className="text-slate-100">Incorrectas</span>
+                  </div>
+                  <div className="flex justify-center">
+                    <span className="px-2 py-2 text-2xl">{preguntas.length - puntuación}</span>
+                  </div>
+                </div>
+              </div>
             </div>
             {preguntas.map((pregunta) => (
               <div

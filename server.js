@@ -1,4 +1,5 @@
 import express from "express";
+import { Resend } from "resend";
 import process from "process";
 import cors from "cors";
 
@@ -91,4 +92,21 @@ app.get("/TasksList", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Servidor API corriendo en el puerto ${PORT}`);
+});
+
+/* <-- SEND EMAIL --> */
+const resend = new Resend("re_HUnWQDWq_EKaqSwbTrN6SqRhVyXuDn331");
+
+app.get("/Email", async (req, res) => {
+  try {
+    const data = await resend.emails.send({
+      from: "Acme <onboarding@resend.dev>",
+      to: ["eduardobarboza1520@g"],
+      subject: "hello world",
+      html: "<strong>it works!</strong>",
+    });
+    res.status(200).json({ data });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
