@@ -15,83 +15,79 @@ let survey = [];
 
 /* <-- POST --> */
 
-
-
 app.post("/User", (req, res) => {
-    const { name, status } = req.query;
+  const { name, status } = req.query;
 
-    if (!name || !status) {
-        return res
-            .status(400)
-            .json({ error: 'Se requieren los parámetros "name" , "status"' });
-    }
+  if (!name || !status) {
+    return res
+      .status(400)
+      .json({ error: 'Se requieren los parámetros "name" , "status"' });
+  }
 
-    const statusBool = status.toLowerCase() === "true";
-    const date = new Date();
-    const lascontact = date.toLocaleString();
-    // Buscar si el usuario ya existe en la lista
-    const existingUser = users.find((user) => user.name === name);
+  const statusBool = status.toLowerCase() === "true";
+  const date = new Date();
+  const lascontact = date.toLocaleString();
+  // Buscar si el usuario ya existe en la lista
+  const existingUser = users.find((user) => user.name === name);
 
-    if (existingUser) {
-        existingUser.status = statusBool; // Actualizar el estado
-        return res.json(existingUser);
-    } else {
-        const userData = {
-            name,
-            status: statusBool,
-            last: lascontact,
-        };
+  if (existingUser) {
+    existingUser.last = lascontact; // Actualizar 
+    existingUser.status = statusBool; 
+    return res.json(existingUser);
+  } else {
+    const userData = {
+      name,
+      status: statusBool,
+      last: lascontact,
+    };
 
-        users.push(userData);
-        return res.json(userData);
-    }
+    users.push(userData);
+    return res.json(userData);
+  }
 });
 app.post("/Survey", (req, res) => {
-    const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
+  const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
 
-    if (!questionData) {
-        return res
-            .status(400)
-            .json({
-                error:
-                    'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.',
-            });
-    }
+  if (!questionData) {
+    return res.status(400).json({
+      error:
+        'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.',
+    });
+  }
 
-    survey.push(questionData);
-    return res.json(questionData);
+  survey.push(questionData);
+  return res.json(questionData);
 });
 
 app.post("/Tasks", (req, res) => {
-    const task = req.body;
-    console.log(tasks)
-    if (!task || !task.name) {
-        return res
-            .status(400)
-            .json({
-                error: 'Se requieren un objeto JSON valido con "tasks" , "fecha" en el cuerpo de la solicitud.'
-            });
-    }
-    tasks.push(task)
-    return res.json(tasks)
+  const task = req.body;
+  console.log(tasks);
+  if (!task || !task.name) {
+    return res.status(400).json({
+      error:
+        'Se requieren un objeto JSON valido con "tasks" , "fecha" en el cuerpo de la solicitud.',
+    });
+  }
+  tasks.push(task);
+  return res.json(tasks);
 });
 
 /* <-- GET --> */
 
 app.get("/UsersList", (req, res) => {
-    return res.json(users);
+  return res.json(users);
 });
 
 app.get("/SurveyList", (req, res) => {
-    return res.json(survey);
+  return res.json(survey);
 });
 
 app.get("/TasksList", (req, res) => {
-    return res.json(tasks)
-})
+  return res.json(tasks);
+});
 
 app.listen(PORT, () => {
-    console.log(`Servidor API corriendo en el puerto ${PORT}`);
+  console.log(`Servidor API corriendo en el puerto ${PORT}`);
 });
 
 /* <-- SEND EMAIL --> */

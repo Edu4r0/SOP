@@ -120,11 +120,14 @@ function Taks() {
                   <span className="text-slate-400">{task.descripcion}</span>
                 </div>
                 <span>{task.date}</span>
-                <div className="flex justify-end">
-                  <button
-                    onClick={() => handleRemove(index)}
-                    className="w-10 h-10 px-2 py-2 bg-red-600"
-                  ></button>
+                <div className="flex justify-end ">
+                  <button>
+                    <img
+                      className="hover:bg-slate-400 px-1 py-1 rounded-md duration-300 "
+                      src="/trash-bin.png"
+                      alt="trash"
+                    />
+                  </button>
                 </div>
               </div>
             </div>
@@ -135,7 +138,7 @@ function Taks() {
           </div>
         )}
       </div>
-      <Toaster richColors closeButton theme="system" />
+      <Toaster closeButton theme="system" />
     </main>
   );
 }

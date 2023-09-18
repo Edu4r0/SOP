@@ -47,7 +47,6 @@ function SurveyCreate() {
   };
 
   const saveQuestion = () => {
-    
     // Aquí puedes enviar question y answers a tu API o hacer lo que necesites con ellos
     const questionData = {
       title: title,
