@@ -5,6 +5,10 @@ function Image() {
   const [file, setfile] = useState("");
   const [filename, setfilename] = useState("");
 
+  function handleRemove() {
+    setfile('')
+    setfilename('')
+  }
   function handleClick() {
     const inputfile = document.getElementById("inputfile");
     inputfile.click();
@@ -12,9 +16,6 @@ function Image() {
   function handleChange({ target: { files } }) {
     setfilename(files[0].name);
     setfile(URL.createObjectURL(files[0]));
-    toast('change')
-      
-    
   }
   function handleURL() {
     window.open(file);
@@ -34,16 +35,26 @@ function Image() {
               }}
               className="hidden  w-full"
               type="file"
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, video/mp4,video/mpeg"
               name="unpload"
               id="inputfile"
             />
-            <span
-              onClick={handleClick}
-              className="text-white hover:bg-blue-600 cursor-pointer bg-blue-800 px-2 py-2 rounded-md"
-            >
-              Subir Imagen
-            </span>
+            {filename.length > 0 ? (
+              <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
+                <span>Quiers enviar esta imagen ?</span>
+                <div className="flex justify-around">
+                  <button className="bg-blue-500 py-1 w-14 rounded-md">Si</button>
+                  <button onClick={handleRemove} className="bg-red-500 py-1 w-14 rounded-md">No</button>
+                </div>
+              </div>
+            ) : (
+              <span
+                onClick={handleClick}
+                className="text-white hover:bg-blue-600 cursor-pointer bg-blue-800 px-2 py-2 rounded-md"
+              >
+                Subir Imagen
+              </span>
+            )}
           </div>
         </div>
         {file && (
@@ -59,9 +70,7 @@ function Image() {
 
               <button
                 className="py-2 px-2 rounded-sm hover:bg-slate-600 bg-slate-700 border-none"
-                onClick={() => {
-                  setfile("");
-                }}
+                onClick={handleRemove}
               >
                 <img src="/trash-bin.png" alt="" />
               </button>
@@ -69,7 +78,7 @@ function Image() {
           </div>
         )}
       </div>
-      <Toaster theme="system" closeButton  duration={10000} />
+      <Toaster theme="system" closeButton duration={10000} />
     </main>
   );
 }

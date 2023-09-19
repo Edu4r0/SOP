@@ -12,6 +12,7 @@ import SurveyCreate from "./pages/SurveyCreate";
 import Header from "./components/Header";
 import Config from "./pages/Config";
 import Games from "./pages/Games";
+import NotFound from "./pages/NotFound";
 function App() {
   const SingIn = () => {
     return (
@@ -176,6 +177,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<SingIn />} />
         <Route path="/dashboard" element={<Layout />} />
         <Route path="/users" element={<User />} />
