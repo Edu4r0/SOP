@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Cards from "../data/Reports";
+import printUser from "../templates/reports/User";
 
 function Cardreports() {
-  const [opencoment, setopencoment] = useState(false);
   const [last, setlast] = useState(Cards);
   async function exportPDF(text, index) {
     const fecha = new Date();
@@ -10,6 +10,7 @@ function Cardreports() {
     const updatelaast = [...last];
     updatelaast[index].last = lasgenerate;
     setlast([...last, updatelaast]);
+    printUser()
   }
 
   return (
@@ -32,30 +33,15 @@ function Cardreports() {
               <span className="text-xs text-slate-500">{last[index].last}</span>
             </div>
             <div
-              className={`bg-slate-800 rounded-md px-2 ${
-                !opencoment ? "w-10" : "mx-auto"
+              className={`bg-slate-800 rounded-md px-2 
               } flex my-2`}
             >
-              {opencoment ? (
-                <p
-                  onClick={() => setopencoment(!opencoment)}
-                  className="text-xs text-slate-500"
-                >
-                  {card.coment}
-                </p>
-              ) : (
-                <span
-                  onClick={() => setopencoment(!opencoment)}
-                  className="text-sm text-slate-500"
-                >
-                  <strong>. . .</strong>
-                </span>
-              )}
+              <p className="text-xs text-slate-500">{card.coment}</p>
             </div>
             <div className="flex justify-end">
               <button
                 onClick={() => exportPDF(card.text, index)}
-                className="border rounded-md border-red-500 px-2 text-red-400"
+                className="border rounded-md border-red-500 px-2 hover:bg-red-500 hover:text-white text-red-400"
               >
                 Exportar pdf
               </button>

@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
-
+let id = 0;
 let tasks = [];
 let users = [];
 let survey = [];
@@ -36,6 +36,7 @@ app.post("/User", (req, res) => {
     return res.json(existingUser);
   } else {
     const userData = {
+      id: id ++,
       name,
       status: statusBool,
       last: lascontact,

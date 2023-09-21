@@ -6,8 +6,8 @@ function Image() {
   const [filename, setfilename] = useState("");
 
   function handleRemove() {
-    setfile('')
-    setfilename('')
+    setfile("");
+    setfilename("");
   }
   function handleClick() {
     const inputfile = document.getElementById("inputfile");
@@ -43,8 +43,15 @@ function Image() {
               <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
                 <span>Quiers enviar esta imagen ?</span>
                 <div className="flex justify-around">
-                  <button className="bg-blue-500 py-1 w-14 rounded-md">Si</button>
-                  <button onClick={handleRemove} className="bg-red-500 py-1 w-14 rounded-md">No</button>
+                  <button className="bg-blue-500 py-1 w-14 rounded-md">
+                    Si
+                  </button>
+                  <button
+                    onClick={handleRemove}
+                    className="bg-red-500 py-1 w-14 rounded-md"
+                  >
+                    No
+                  </button>
                 </div>
               </div>
             ) : (
