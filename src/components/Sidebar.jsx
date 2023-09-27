@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Menus from "../data/Sidebar";
 
 function Sidebar() {
-  const [open, setopen] = useState(true);
+  const [open, setopen] = useState(false);
   const [opentab, setopentab] = useState(false);
 
   function handleclick() {

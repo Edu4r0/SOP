@@ -35,15 +35,15 @@ function Image() {
               }}
               className="hidden  w-full"
               type="file"
-              accept="image/png, image/jpeg, video/mp4,video/mpeg"
+              accept="image/png, image/jpeg, video/mp4,video/mpeg, application/pdf"
               name="unpload"
               id="inputfile"
             />
             {filename.length > 0 ? (
               <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
-                <span>Quiers enviar esta imagen ?</span>
+                <span>Quiers enviar este achivo ?</span>
                 <div className="flex justify-around">
-                  <button className="bg-blue-500 py-1 w-14 rounded-md">
+                  <button onClick={()=> toast.success('Imagen subida')} className="bg-blue-500 py-1 w-14 rounded-md">
                     Si
                   </button>
                   <button
@@ -85,7 +85,7 @@ function Image() {
           </div>
         )}
       </div>
-      <Toaster theme="system" closeButton duration={10000} />
+      <Toaster theme="system" richColors closeButton />
     </main>
   );
 }

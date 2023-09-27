@@ -194,7 +194,7 @@ function SurveyClassic() {
 
   if (preguntas.length === 0)
     return (
-     <NotFound/>
+     <NotFound name='No Hay preguntas'/>
     );
   return (
     <main className="bg-slate-950 text-white font-poppins h-screen px-5 py-5">

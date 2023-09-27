@@ -36,6 +36,7 @@ function SurveyCreate() {
           ...answers,
           { textoRespuesta: newAnswer, isCorrect: false },
         ]);
+        setNewAnswer('')
       }
     }
   };
@@ -109,6 +110,7 @@ function SurveyCreate() {
           <div className="py-2 flex justify-between">
             <input
               type="text"
+              id = "answer"
               className=" outline-none w-2/3 h-1/6 bg-slate-800 rounded-md px-1 py-1"
               value={newAnswer}
               onChange={(e) => setNewAnswer(e.target.value)}

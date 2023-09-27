@@ -63,7 +63,7 @@ function Dashboard() {
 
       <hr className="my-3 border border-slate-600 rounded-lg mx-auto" />
       <div className="flex justify-between mx-auto ">
-        <div className="bg-slate-800 h-32 w-1/5 rounded-md flex py-5">
+        <div className="bg-slate-800  h-32 w-1/5 rounded-md flex py-5 px-5">
           <span className="text-slate-400">Uso</span>
           <div className="w-3/4 ">
             <ResponsiveContainer>
@@ -76,7 +76,7 @@ function Dashboard() {
                 <Line
                   type="monotone"
                   dataKey="pv"
-                  stroke="#8884d8"
+                  stroke="#030712"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -86,20 +86,20 @@ function Dashboard() {
         </div>
         <CardAnalytics
           name="Usuarios"
-          image="users"
-          color="bg-purple-800"
+          image="user"
+          color="bg-purple-500"
           number={user.length}
         />
         <CardAnalytics
           name="Avisos"
           image="image"
-          color="bg-blue-800"
+          color="bg-yellow-500"
           number="2"
         />
         <CardAnalytics
           name="Encuestas"
           image="survey"
-          color="bg-slate-900"
+          color="bg-blue-500"
           number="1"
         />
       </div>
@@ -120,26 +120,26 @@ function Dashboard() {
             <Tooltip
               contentStyle={{ background: "transparent", border: "none" }}
               labelStyle={{ display: "none" }}
-              position={{ x: 900, y: 10 }}
+              position={{ x: 1020, y: 0 }}
             />
             <Line
               type="monotone"
               dataKey="pv"
-              stroke="#8884d8"
+              stroke="#a855f7"
               strokeWidth={2}
               dot={false}
             />
             <Line
               type="monotone"
               dataKey="uv"
-              stroke="#82ca9d"
+              stroke="#eab308"
               strokeWidth={2}
               dot={false}
             />
             <Line
               type="monotone"
               dataKey="amt"
-              stroke="#82ca9d"
+              stroke="#3b82f6"
               strokeWidth={2}
               dot={false}
             />
