@@ -41,9 +41,9 @@ function Image() {
             />
             {filename.length > 0 ? (
               <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
-                <span>Quiers enviar esta imagen ?</span>
+                <span>Quiers enviar este archivo ?</span>
                 <div className="flex justify-around">
-                  <button className="bg-blue-500 py-1 w-14 rounded-md">
+                  <button onClick={()=> toast.success('Archivo enviado')} className="bg-blue-500 py-1 w-14 rounded-md">
                     Si
                   </button>
                   <button
@@ -59,7 +59,7 @@ function Image() {
                 onClick={handleClick}
                 className="text-white hover:bg-blue-600 cursor-pointer bg-blue-800 px-2 py-2 rounded-md"
               >
-                Subir Imagen
+                Subir Archivo
               </span>
             )}
           </div>

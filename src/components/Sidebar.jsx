@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Menus from "../data/Sidebar";
 
 function Sidebar() {
-  const [open, setopen] = useState(true);
+  const [open, setopen] = useState(false);
   const [opentab, setopentab] = useState(false);
 
   function handleclick() {
@@ -30,6 +30,7 @@ function Sidebar() {
             <div key={menu.id}>
               <Link to={menu.href}>
                 <li
+                  
                   onClick={menu.id == 6 ? handleclick : null}
                   className={`${`flex rounded-md p-2 cursor-pointer hover:bg-slate-500 h-10 text-gray-300 text-sm items-center gap-x-4 ${
                     open ? "" : "w-10"
@@ -51,7 +52,6 @@ function Sidebar() {
                   <img
                     className={`${open ? "block" : "hidden"}`}
                     src={`${menu.imgdrop ? `${menu.imgdrop}` : ""}.png`}
-                    alt=""
                   />
                 </li>
               </Link>
