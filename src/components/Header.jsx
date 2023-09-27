@@ -15,7 +15,11 @@ function Header() {
         <div className="flex">
           <form className="flex gap-5" onSubmit={(e) => e.preventDefault()}>
             <input
+<<<<<<< HEAD
               className="bg-gray-800 border-gray-600 border-2  px-1 rounded-md w-3/4 text-white focus:border-gray-500 focus:border-2 focus:outline-none"
+=======
+              className="bg-gray-800 border-gray-600 border-2 px-1 rounded-md w-3/4 text-white focus:border-gray-500 focus:border-2 focus:outline-none"
+>>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
               type="text"
               name=""
               id=""

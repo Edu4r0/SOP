@@ -12,6 +12,11 @@ let id = 0;
 let tasks = [];
 let users = [];
 let survey = [];
+let analytics = {
+  users : {},
+  tasks : {},
+  survey : {},
+};
 
 /* <-- POST --> */
 
@@ -41,7 +46,7 @@ app.post("/User", (req, res) => {
       status: statusBool,
       last: lascontact,
     };
-
+    analytics.users.push(userData.id + 1)
     users.push(userData);
     return res.json(userData);
   }
@@ -55,7 +60,6 @@ app.post("/Survey", (req, res) => {
         'Se requiere un objeto JSON válido con "titulo" y "opciones" en el cuerpo de la solicitud.',
     });
   }
-
   survey.push(questionData);
   return res.json(questionData);
 });
@@ -69,6 +73,7 @@ app.post("/Tasks", (req, res) => {
         'Se requieren un objeto JSON valido con "tasks" , "fecha" en el cuerpo de la solicitud.',
     });
   }
+  analytics.push(task)
   tasks.push(task);
   return res.json(tasks);
 });
@@ -85,6 +90,10 @@ app.get("/SurveyList", (req, res) => {
 
 app.get("/TasksList", (req, res) => {
   return res.json(tasks);
+});
+
+app.get("/Analytics", (req, res) => {
+  return res.json(analytics);
 });
 
 app.listen(PORT, () => {
