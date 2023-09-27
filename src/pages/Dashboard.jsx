@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 import UsersTable from "../components/UsersTable";
 
 function Dashboard() {
-  const [data, setdata] = useState([]);
+  const [datenow, setDatenow] = useState("");
+
   const date = new Date();
   const day = date.getDay();
   const dayselect = Days.map((days) => {
@@ -18,13 +19,29 @@ function Dashboard() {
       try {
         const response = await fetch("http://localhost:5000/Analytics");
         const data = await response.json();
-        setdata(data);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
     }
     fechAPI();
+  }, []);
+
+  useEffect(() => {
+    function SetDate() {
+      const date = new Date();
+      const days = `${date.toLocaleDateString()} ${date.toLocaleTimeString(
+        "COL",
+        {
+          hour12: true,
+          second: undefined,
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      )}`;
+      console.log("date");
+      setDatenow(days);
+    }
+    setInterval(SetDate, 60000);
   }, []);
 
   const navigate = useNavigate();
@@ -36,21 +53,25 @@ function Dashboard() {
   return (
     <main className="bg-slate-900 w-full py-5 px-5">
       <div className="flex justify-between">
-        <div className="flex justify-between bg-gradient-to-r from-cyan-500 to-blue-500 h-44 w-1/2 rounded-md">
-          <div className="h-8 w-52 mx-5 my-3 bg-blue-800 rounded-md shadow-md text-white"></div>
-          <div className="my-24 absolute mx-5 ">
-            <h1 className="text-white text-2xl font-bold py-1">
-              Bienvenido, Admin
-            </h1>
-            <p className="text-white text-sm">
-              Que tengas un feliz {dayselect}
-            </p>
+        <div className="flex justify-between px-5 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 h-44 w-1/2 rounded-md">
+          <div className="flex gap-16 justify-between">
+            <div className="flex flex-col justify-between">
+              <div className="h-8 text-sm w-52 px-2 py-1 bg-blue-800 rounded-md shadow-md text-center text-white">
+                {datenow}
+              </div>
+              <div>
+                <h1 className="text-white text-2xl font-bold py-1">
+                  Bienvenido, Admin
+                </h1>
+                <p className="text-white text-sm">
+                  Que tengas un feliz {dayselect}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-end w-60">
+              <img className="" src="/welcome-admin.svg" alt="welcome admin" />
+            </div>
           </div>
-          <img
-            className="relative h-48 bottom-5 "
-            src="/undraw_welcoming.svg"
-            alt=""
-          />
         </div>
         <div
           onClick={() => {
@@ -64,11 +85,7 @@ function Dashboard() {
 
       <hr className="my-3 border border-slate-600 rounded-lg mx-auto" />
       <div className="flex justify-between mx-auto ">
-<<<<<<< HEAD
-        <div className="bg-slate-800  h-32 w-1/5 rounded-md flex py-5 px-5">
-=======
         <div className="bg-slate-800 h-32 w-1/5 rounded-md flex px-5 py-5">
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
           <span className="text-slate-400">Uso</span>
           <div className="w-3/4 ">
             <ResponsiveContainer>
@@ -81,7 +98,7 @@ function Dashboard() {
                 <Line
                   type="monotone"
                   dataKey="pv"
-                  stroke="#030712"
+                  stroke="#8884d8"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -92,24 +109,19 @@ function Dashboard() {
         <CardAnalytics
           name="Usuarios"
           image="user"
-<<<<<<< HEAD
-          color="bg-purple-500"
-          number={user.length}
-=======
           color="bg-purple-800"
-          number={data[0].lenght}
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
+          number=""
         />
         <CardAnalytics
           name="Avisos"
           image="image"
-          color="bg-yellow-500"
+          color="bg-blue-800"
           number="2"
         />
         <CardAnalytics
           name="Encuestas"
           image="survey"
-          color="bg-blue-500"
+          color="bg-slate-900"
           number="1"
         />
       </div>
@@ -130,42 +142,26 @@ function Dashboard() {
             <Tooltip
               contentStyle={{ background: "transparent", border: "none" }}
               labelStyle={{ display: "none" }}
-<<<<<<< HEAD
-              position={{ x: 1020, y: 0 }}
-=======
-              position={{ x: 1120, y: 10 }}
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
+              position={{ x: 1020, y: 10 }}
             />
             <Line
               type="monotone"
               dataKey="pv"
-<<<<<<< HEAD
-              stroke="#a855f7"
-=======
               stroke="#6b21a8"
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
               strokeWidth={2}
               dot={false}
             />
             <Line
               type="monotone"
               dataKey="uv"
-<<<<<<< HEAD
-              stroke="#eab308"
-=======
               stroke="#1e40af"
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
               strokeWidth={2}
               dot={false}
             />
             <Line
               type="monotone"
               dataKey="amt"
-<<<<<<< HEAD
-              stroke="#3b82f6"
-=======
               stroke="#0f172a"
->>>>>>> af4edacabc844d10223e7340e5ca2eff63e2757f
               strokeWidth={2}
               dot={false}
             />
