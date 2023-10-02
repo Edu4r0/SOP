@@ -8,6 +8,7 @@ import UsersTable from "../components/UsersTable";
 
 function Dashboard() {
   const [datenow, setDatenow] = useState("");
+  const [user, setuser] = useState("")
 
   const date = new Date();
   const day = date.getDay();
@@ -17,8 +18,9 @@ function Dashboard() {
   useEffect(() => {
     async function fechAPI() {
       try {
-        const response = await fetch("http://localhost:5000/Analytics");
+        const response = await fetch("http://localhost:5000/UsersList");
         const data = await response.json();
+        setuser(data)
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +43,7 @@ function Dashboard() {
       console.log("date");
       setDatenow(days);
     }
-    setInterval(SetDate, 60000);
+    setInterval(SetDate(), 60000);
   }, []);
 
   const navigate = useNavigate();
@@ -110,7 +112,7 @@ function Dashboard() {
           name="Usuarios"
           image="user"
           color="bg-purple-800"
-          number=""
+          number={user.length}
         />
         <CardAnalytics
           name="Avisos"
