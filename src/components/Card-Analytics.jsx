@@ -2,7 +2,7 @@ function CardAnalytics(nombre) {
   const { name, number, color, image } = nombre;
   return (
     <a
-      className="bg-slate-800 hover:bg-gray-700 cursor-pointer h-32 w-1/5 rounded-md px-5 py-5 "
+      className="border border-slate-700 bg-slate-800 hover:bg-gray-700 cursor-pointer h-32 w-1/5 rounded-md px-5 py-5 "
       href={image}
     >
       <div className="flex justify-between text-right">

@@ -65,7 +65,7 @@ function Taks() {
           <form onSubmit={(e) => handleSubmit(e)} className="flex gap-5">
             <input
               className="rounded-md outline-none bg-slate-600 text-white px-2"
-              placeholder="Ingese la tarea"
+              placeholder="Ingrese la tarea"
               type="text"
               autoComplete="off"
               name="text"

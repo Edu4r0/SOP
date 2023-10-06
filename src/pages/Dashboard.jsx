@@ -1,14 +1,23 @@
 import Days from "../data/Days";
 import data from "../data/LineChart";
-import { useNavigate } from "react-router-dom";
+import pieChartdata from "../data/PieChart";
+import { Await, useNavigate } from "react-router-dom";
 import CardAnalytics from "../components/Card-Analytics";
-import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  Line,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 import { useState, useEffect } from "react";
 import UsersTable from "../components/UsersTable";
 
 function Dashboard() {
   const [datenow, setDatenow] = useState("");
-  const [user, setuser] = useState("")
+  const [user, setuser] = useState("");
 
   const date = new Date();
   const day = date.getDay();
@@ -20,9 +29,9 @@ function Dashboard() {
       try {
         const response = await fetch("http://localhost:5000/UsersList");
         const data = await response.json();
-        setuser(data)
+        setuser(data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     }
     fechAPI();
@@ -40,7 +49,6 @@ function Dashboard() {
           minute: "2-digit",
         }
       )}`;
-      console.log("date");
       setDatenow(days);
     }
     setInterval(SetDate(), 60000);
@@ -51,11 +59,13 @@ function Dashboard() {
   function users() {
     navigate("/users");
   }
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
     <main className="bg-slate-900 w-full py-5 px-5">
-      <div className="flex justify-between">
-        <div className="flex justify-between px-5 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 h-44 w-1/2 rounded-md">
+      <div className="min-w-full">
+      <div className="flex justify-between gap-10">
+        <div className="flex justify-between px-5 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 h-44 w-1/3 rounded-md">
           <div className="flex gap-16 justify-between">
             <div className="flex flex-col justify-between">
               <div className="h-8 text-sm w-52 px-2 py-1 bg-blue-800 rounded-md shadow-md text-center text-white">
@@ -70,24 +80,64 @@ function Dashboard() {
                 </p>
               </div>
             </div>
-            <div className="flex items-end w-60">
-              <img className="" src="/welcome-admin.svg" alt="welcome admin" />
-            </div>
+
           </div>
         </div>
         <div
           onClick={() => {
             users();
           }}
-          className="bg-slate-700 h-44 w-2/5 rounded-md flex-none overflow-y-hidden cursor-pointer text-sm"
+          className="border border-slate-700 bg-slate-700 h-44 w-2/6 rounded-md flex-none overflow-y-hidden cursor-pointer text-sm"
         >
           <UsersTable className="hover:bg-black" />
+        </div>
+        <div className="border border-slate-700 w-1/4 h-44 py-1 bg-slate-800 rounded-md flex justify-center items-start">
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={pieChartdata}
+                cx={150}
+                cy={80}
+                innerRadius={60}
+                outerRadius={80}
+                fill="#8884d8"
+                paddingAngle={5}
+                dataKey="value"
+              >
+                {data.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Pie
+                data={data}
+                cx={420}
+                cy={200}
+                startAngle={180}
+                endAngle={0}
+                innerRadius={60}
+                outerRadius={80}
+                fill="#8884d8"
+                paddingAngle={5}
+                dataKey="value"
+              >
+                {data.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
       <hr className="my-3 border border-slate-600 rounded-lg mx-auto" />
       <div className="flex justify-between mx-auto ">
-        <div className="bg-slate-800 h-32 w-1/5 rounded-md flex px-5 py-5">
+        <div className="bg-slate-800 border border-slate-700 h-32 w-1/5 rounded-md flex px-5 py-5">
           <span className="text-slate-400">Uso</span>
           <div className="w-3/4 ">
             <ResponsiveContainer>
@@ -128,8 +178,8 @@ function Dashboard() {
         />
       </div>
 
-      <div className="my-5 bg-slate-800 h-1/3 rounded-md">
-        <ResponsiveContainer>
+      <div className="border border-slate-700 my-5 bg-slate-800 h-52 w-full rounded-md">
+      <ResponsiveContainer width={"98%"}>
           <LineChart
             width={500}
             height={300}
@@ -169,6 +219,7 @@ function Dashboard() {
             />
           </LineChart>
         </ResponsiveContainer>
+      </div>
       </div>
     </main>
   );
