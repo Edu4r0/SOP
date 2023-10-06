@@ -1,5 +1,5 @@
 import { useState } from "react";
-import unploadImage from "../code/UpdateImage";
+import unploadFile from "../code/UpdateImage";
 import { Toaster, toast } from "sonner";
 
 function Image() {
@@ -25,7 +25,7 @@ function Image() {
   }
   const unploadFile = async () => {
     try {
-     await unploadImage(fileUnpload);
+     await unploadFile(fileUnpload);
     } catch (error) {
       console.error("Error uploading image to Cloudinary", error);
     }
