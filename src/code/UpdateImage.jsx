@@ -1,4 +1,4 @@
-const uploadImage = async (image) => {
+const uploadFile = async (image) => {
   const formData = new FormData();
   formData.append("file", image);
   formData.append("upload_preset", "k0haptsq");

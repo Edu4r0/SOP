@@ -1,7 +1,7 @@
 import Days from "../data/Days";
 import data from "../data/LineChart";
 import pieChartdata from "../data/PieChart";
-import { Await, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CardAnalytics from "../components/Card-Analytics";
 import {
   LineChart,
