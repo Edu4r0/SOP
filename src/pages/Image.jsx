@@ -1,8 +1,10 @@
 import { useState } from "react";
+import unploadImage from "../code/UpdateImage";
 import { Toaster, toast } from "sonner";
 
 function Image() {
   const [file, setfile] = useState("");
+  const [fileUnpload, setfileUnpload] = useState([]);
   const [filename, setfilename] = useState("");
 
   function handleRemove() {
@@ -14,12 +16,20 @@ function Image() {
     inputfile.click();
   }
   function handleChange({ target: { files } }) {
+    setfileUnpload(files[0]);
     setfilename(files[0].name);
     setfile(URL.createObjectURL(files[0]));
   }
   function handleURL() {
     window.open(file);
   }
+  const unploadFile = async () => {
+    try {
+     await unploadImage(fileUnpload);
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary", error);
+    }
+  };
 
   return (
     <main className="bg-slate-900 w-full">
@@ -43,7 +53,10 @@ function Image() {
               <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
                 <span>Quiers enviar este archivo ?</span>
                 <div className="flex justify-around">
-                  <button onClick={()=> toast.success('Archivo enviado')} className="bg-blue-500 py-1 w-14 rounded-md">
+                  <button
+                    onClick={() => unploadFile}
+                    className="bg-blue-500 py-1 w-14 rounded-md"
+                  >
                     Si
                   </button>
                   <button
