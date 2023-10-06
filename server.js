@@ -11,8 +11,9 @@ app.use(cors());
 let id = 0;
 let tasks = [];
 let users = [];
+let usersignore = [];
 let survey = [];
-let analytics = {
+/*let analytics = {
   users : {},
   tasks : {},
   survey : {},
@@ -37,16 +38,15 @@ app.post("/User", (req, res) => {
 
   if (existingUser) {
     existingUser.last = lascontact; // Actualizar 
-    existingUser.status = statusBool; 
+    existingUser.status = statusBool;
     return res.json(existingUser);
   } else {
     const userData = {
-      id: id ++,
+      id: id++,
       name,
       status: statusBool,
       last: lascontact,
     };
-    analytics.users.push(userData.id + 1)
     users.push(userData);
     return res.json(userData);
   }
@@ -74,7 +74,6 @@ app.post("/Tasks", (req, res) => {
         'Se requieren un objeto JSON valido con "tasks" , "fecha" en el cuerpo de la solicitud.',
     });
   }
-  analytics.push(task)
   tasks.push(task);
   return res.json(tasks);
 });
@@ -93,9 +92,25 @@ app.get("/TasksList", (req, res) => {
   return res.json(tasks);
 });
 
-app.get("/Analytics", (req, res) => {
-  return res.json(analytics);
+const response = (name) => {
+  const data = [{
+    survey: {
+      isurvey: survey.length > 0 ? true : false
+    },
+    isRun : {
+      isrun :{
+        usersignore.map()
+      }
+    }
+  }]
+}
+
+app.get("/api/request", (req, res) => {
+  return res.json()
 });
+/*app.get("/Analytics", (req, res) => {
+  return res.json(analytics);
+});*/
 
 app.listen(PORT, () => {
   console.log(`Servidor API corriendo en el puerto ${PORT}`);
@@ -117,3 +132,4 @@ app.get("/Email", async (req, res) => {
     res.status(500).json({ error });
   }
 });
+
