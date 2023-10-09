@@ -11,7 +11,6 @@ app.use(cors());
 let id = 0;
 let tasks = [];
 let users = [];
-let usersignore = [];
 let survey = [];
 /*let analytics = {
   users : {},
@@ -92,7 +91,6 @@ app.get("/TasksList", (req, res) => {
   return res.json(tasks);
 });
 
-app.get("/api/analysis", (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`Servidor API corriendo en el puerto ${PORT}`);
