@@ -1,5 +1,5 @@
 import { useState } from "react";
-import unploadFile from "../code/UpdateImage";
+import unploadFile from "../code/UnploadFile";
 import { Toaster, toast } from "sonner";
 
 function Image() {
@@ -23,12 +23,8 @@ function Image() {
   function handleURL() {
     window.open(file);
   }
-  const unploadFile = async () => {
-    try {
-     await unploadFile(fileUnpload);
-    } catch (error) {
-      console.error("Error uploading image to Cloudinary", error);
-    }
+  const sendFile = async () => {
+    unploadFile(fileUnpload);
   };
 
   return (
@@ -54,7 +50,7 @@ function Image() {
                 <span>Quiers enviar este archivo ?</span>
                 <div className="flex justify-around">
                   <button
-                    onClick={() => unploadFile}
+                    onClick={() => sendFile()}
                     className="bg-blue-500 py-1 w-14 rounded-md"
                   >
                     Si

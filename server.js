@@ -20,10 +20,13 @@ let survey = [];
 };
 
 /* <-- POST --> */
-
-app.post("/User", (req, res) => {
+app.post("/api/userscreate", (req, res) => {
   const { name, status } = req.query;
+  checkUser(name,res,status);
+  
+});
 
+function checkUser(name,res, status) {
   if (!name || !status) {
     return res
       .status(400)
@@ -37,9 +40,8 @@ app.post("/User", (req, res) => {
   const existingUser = users.find((user) => user.name === name);
 
   if (existingUser) {
-    existingUser.last = lascontact; // Actualizar 
+    existingUser.last = lascontact; // Actualizar
     existingUser.status = statusBool;
-    return res.json(existingUser);
   } else {
     const userData = {
       id: id++,
@@ -48,10 +50,10 @@ app.post("/User", (req, res) => {
       last: lascontact,
     };
     users.push(userData);
-    return res.json(userData);
+    return res.json({ status: 'success' });
   }
-});
-app.post("/Survey", (req, res) => {
+}
+app.post("/api/survey", (req, res) => {
   const questionData = req.body; // El objeto JSON se espera en el cuerpo de la solicitud
 
   if (!questionData) {
@@ -64,10 +66,8 @@ app.post("/Survey", (req, res) => {
   return res.json(questionData);
 });
 
-
-app.post("/Tasks", (req, res) => {
+app.post("/api/tasks", (req, res) => {
   const task = req.body;
-  console.log(tasks);
   if (!task || !task.name) {
     return res.status(400).json({
       error:
@@ -92,25 +92,7 @@ app.get("/TasksList", (req, res) => {
   return res.json(tasks);
 });
 
-const response = (name) => {
-  const data = [{
-    survey: {
-      isurvey: survey.length > 0 ? true : false
-    },
-    isRun : {
-      isrun :{
-        usersignore.map()
-      }
-    }
-  }]
-}
-
-app.get("/api/request", (req, res) => {
-  return res.json()
-});
-/*app.get("/Analytics", (req, res) => {
-  return res.json(analytics);
-});*/
+app.get("/api/analysis", (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`Servidor API corriendo en el puerto ${PORT}`);
@@ -132,4 +114,3 @@ app.get("/Email", async (req, res) => {
     res.status(500).json({ error });
   }
 });
-
