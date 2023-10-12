@@ -3,14 +3,14 @@ import { Toaster, toast } from "sonner";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [question, setQuestion] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
 
   async function postData(questionData) {
+    console.log(JSON.stringify(questionData))
+
     try {
       toast.loading("Cargando..");
-      // eslint-disable-next-line no-unused-vars
       const response = await fetch("http://localhost:5000/Survey", {
         method: "POST",
         headers: {
@@ -18,9 +18,13 @@ function SurveyCreate() {
         },
         body: JSON.stringify(questionData),
       });
-      toast.success("Enviado con exito");
+      const data = await response.json()
+      console.log(data)
+      if (response.status == 200)
+          toast.success("Enviado con exito");
     } catch (error) {
       toast.error(`Error en el envio ${error.message} `);
+      console.log(error.message);
     }
   }
   const handleCorrect = (index) => {
@@ -48,7 +52,6 @@ function SurveyCreate() {
   };
 
   const saveQuestion = () => {
-    // Aquí puedes enviar question y answers a tu API o hacer lo que necesites con ellos
     const questionData = {
       title: title,
       opciones: answers,

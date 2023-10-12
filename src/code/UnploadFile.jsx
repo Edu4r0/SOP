@@ -1,12 +1,15 @@
-import doe
+
 const uploadFile = async (image) => {
+  const baseURL = import.meta.env.VITE_UNPLOAD_PRESENT;
+  const driveNAME = import.meta.env.VITE_DRIVE_NAME;
+
   const formData = new FormData();
   formData.append("file", image);
-  formData.append("upload_preset", '');
+  formData.append("upload_preset", baseURL);
 
   try {
     const response = await fetch(
-      'https://api.cloudinary.com/v1_1/dw2burqsv/auto/upload',
+      `https://api.cloudinary.com/v1_1/${driveNAME}/auto/upload`,
       {
         method: "POST",
         body: formData,
@@ -14,11 +17,10 @@ const uploadFile = async (image) => {
       }
     );
     const responseData = await response.json();
-    console.log(responseData);
+    return responseData;
   } catch (error) {
     console.log(error.message);
   }
-  
 };
 
 export default uploadFile;

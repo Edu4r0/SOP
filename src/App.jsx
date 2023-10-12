@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
 import Image from "./pages/Image";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SurveyClassic from "./pages/SurveryClassic";
+import SurveyClassic from "./pages/Survey/SurveryClassic";
 import Dashboard from "./pages/Dashboard";
 import Survey from "./pages/Survey";
 import Reports from "./pages/Reports";

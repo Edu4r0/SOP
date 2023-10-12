@@ -6,7 +6,7 @@ function Taks() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("http://localhost:5000/TasksList");
+        const response = await fetch("https://api-sop.vercel.app/TasksList");
         const data = await response.json();
         settasks(data);
       } catch (error) {
@@ -19,7 +19,7 @@ function Taks() {
   async function postData(data) {
     try {
       // eslint-disable-next-line no-unused-vars
-      const response = await fetch("http://localhost:5000/Tasks", {
+      const response = await fetch("https://api-sop.vercel.app/Tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import fechAPI from "../data/FechApi";
 
 function UsersTable() {
   const [DataUser, setDataUser] = useState([]);
@@ -8,8 +9,7 @@ function UsersTable() {
     async function fetchData() {
       try {
         setloading(true);
-        const response = await fetch("http://localhost:5000/UsersList");
-        const data = await response.json();
+        const data = await fechAPI("UsersList");
         setDataUser(data);
       } catch (error) {
         console.log(error.message);
@@ -33,12 +33,12 @@ function UsersTable() {
         </thead>
         <tbody className="text-white text-center">
           {DataUser.length > 0 ? (
-            DataUser.map((user, index) => (
+            DataUser.map((user) => (
               <tr
                 className="border-b dark:bg-gray-800 dark:border-gray-700"
                 key={user.name}
               >
-                <td> {index}</td>
+                <td> {user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.last}</td>
                 <td className="flex my-2 justify-center items-center">
@@ -60,12 +60,12 @@ function UsersTable() {
             <tr className="h-40">
               <td colSpan={4}>
                 <div className="flex justify-center items-center">
-                  
                   {loading ? (
                     <div className="mx-5 h-10 w-10 border-4 border-blue-700 border-r-transparent animate-spin rounded-full"></div>
                   ) : (
                     <div>
-                    <span>No hay datos</span><a href=""></a>
+                      <span>No hay datos</span>
+                      <a href=""></a>
                     </div>
                   )}
                 </div>

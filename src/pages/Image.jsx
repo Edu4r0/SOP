@@ -24,7 +24,8 @@ function Image() {
     window.open(file);
   }
   const sendFile = async () => {
-    unploadFile(fileUnpload);
+    const response = await unploadFile(fileUnpload);
+    response && toast.success("Archivo subido con exito");
   };
 
   return (

@@ -17,8 +17,6 @@ function Header() {
             <input
               className="bg-gray-800 border-gray-600 border-2  px-1 rounded-md w-3/4 text-white focus:border-gray-500 focus:border-2 focus:outline-none"
               type="text"
-              name=""
-              id=""
             />
             <button className="text-white bg-slate-700 px-3 rounded-md border border-gray-600 font-medium hover:bg-slate-600">
               Buscar
