@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import unploadFile from "../code/UnploadFile";
 import { Toaster, toast } from "sonner";
 
@@ -6,6 +6,29 @@ function Image() {
   const [file, setfile] = useState("");
   const [fileUnpload, setfileUnpload] = useState([]);
   const [filename, setfilename] = useState("");
+  const [fileURL, setFileURL] = useState("");
+
+  useEffect(() => {
+    async function sendURL() {
+      toast.loading('Subiendo...')
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/create/notice?url=${fileURL}`,
+          {
+            method: "POST",
+          }
+        );
+
+        if (response.status == 200) {
+          toast.success("Archivo subido con exito");
+        }
+      } catch (error) {
+        toast.error("Error: " + error.message);
+      }
+    }
+
+    fileURL && sendURL();
+  }, [fileURL]);
 
   function handleRemove() {
     setfile("");
@@ -25,7 +48,7 @@ function Image() {
   }
   const sendFile = async () => {
     const response = await unploadFile(fileUnpload);
-    response && toast.success("Archivo subido con exito");
+    setFileURL(response);
   };
 
   return (
