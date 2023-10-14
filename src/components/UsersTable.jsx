@@ -29,6 +29,7 @@ function UsersTable() {
             <th>nombre</th>
             <th>ultimo contacto</th>
             <th>status</th>
+            <th>puntos</th>
           </tr>
         </thead>
         <tbody className="text-white text-center">
@@ -53,6 +54,9 @@ function UsersTable() {
                       Offline
                     </span>
                   )}
+                </td>
+                <td>
+                  
                 </td>
               </tr>
             ))

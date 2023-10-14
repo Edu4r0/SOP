@@ -19,7 +19,7 @@ function Sidebar() {
     <div>
       <div
         className={`${
-          open ? "w-60" : "w-20"
+          open ? "w-48" : "w-20"
         }  h-screen bg-slate-950 flex relative duration-300`}
       >
         <img
@@ -35,18 +35,18 @@ function Sidebar() {
           {Menus.map((menu, index) => (
            <Link key={index} to={menu.href}>
              <li
-            key={menu.id} // Use a unique identifier here
+            key={menu.id} 
             onClick={menu.id == 6 ? handleclick : null}
             className={`${
               `flex rounded-md p-2 cursor-pointer hover:bg-slate-500 h-10 text-gray-300 text-sm items-center gap-x-4 ${
                 open ? "" : "w-10"
-              } duration-150`
+              }`
             } ${menu.id === 7 || menu.id === 8 ? (opentab ? " bg-slate-900" : "hidden") : ""}`}
           >
           
-            <img src={`/${menu.src}.png`} alt={menu.title} />
+            <img className="duration-300" src={`/${menu.src}.png`} alt={menu.title} />
             <span
-              className={`font-semibold  ${open ? "w-36" : "scale-0"}`}
+              className={`font-semibold duration-75 ${open ? "w-28" : "scale-0"}`}
               onClick={() => handleredirect(menu.id, index)}
             >
               {menu.title}
