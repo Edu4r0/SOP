@@ -1,30 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
-  const [question, setQuestion] = useState([]);
+  const [loadsurvey, setloadsurvey] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
 
   async function postData(questionData) {
-    console.log(JSON.stringify(questionData))
-
     try {
       toast.loading("Cargando..");
-      const response = await fetch("http://localhost:5000/Survey", {
+      const response = await fetch("http://localhost:5000/api/survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(questionData),
       });
-      const data = await response.json()
-      console.log(data)
-      if (response.status == 200)
-          toast.success("Enviado con exito");
+      if (response.status === 200) setloadsurvey([...loadsurvey, questionData]);
+      toast.success("Enviado con exito");
     } catch (error) {
       toast.error(`Error en el envio ${error.message} `);
-      console.log(error.message);
     }
   }
   const handleCorrect = (index) => {
@@ -40,7 +35,7 @@ function SurveyCreate() {
           ...answers,
           { textoRespuesta: newAnswer, isCorrect: false },
         ]);
-        setNewAnswer('')
+        setNewAnswer("");
       }
     }
   };
@@ -56,13 +51,12 @@ function SurveyCreate() {
       title: title,
       opciones: answers,
     };
-    setQuestion(questionData);
     postData(questionData);
-    setAnswers("");
+    setAnswers([]);
   };
 
   return (
-    <div className="bg-slate-900 w-full py-10 px-10 flex ">
+    <div className="bg-slate-900 w-full flex items-start justify-between py-10 px-10 ">
       <div className="bg-slate-600 rounded-md h-4/5 w-1/3 gap-10 text-white px-5 py-5">
         <div className="text-center rounded-md">
           <h2 className="text-gray-100 text-2xl font-bold">
@@ -113,7 +107,8 @@ function SurveyCreate() {
           <div className="py-2 flex justify-between">
             <input
               type="text"
-              id = "answer"
+              id="answer"
+              autoComplete="off"
               className=" outline-none w-2/3 h-1/6 bg-slate-800 rounded-md px-1 py-1"
               value={newAnswer}
               onChange={(e) => setNewAnswer(e.target.value)}
@@ -133,6 +128,21 @@ function SurveyCreate() {
           </button>
         </div>
       </div>
+      <section className="flex w-1/3 justify-center">
+        {loadsurvey.map((answer, index) => (
+          <div
+            className="bg-slate-600 w-2/3 px-5 py-2 border border-slate-700 rounded-md text-slate-200 "
+            key={index}
+          >
+            <div className="flex justify-between items-center">
+              <span>{answer.title}</span>
+              <span className="text-slate-400 text-sm">
+                opciones : <span className="">{answer.opciones.length}</span>
+              </span>
+            </div>
+          </div>
+        ))}
+      </section>
       <Toaster richColors closeButton theme="system" />
     </div>
   );
