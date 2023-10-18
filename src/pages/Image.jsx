@@ -52,12 +52,12 @@ function Image() {
   };
 
   return (
-    <main className="bg-slate-900 w-full">
+    <main className="bg-gray-50  dark:bg-gray-900 w-full">
       <div className="flex flex-col items-center justify-center py-10">
-        <h2 className="text-white text-2xl font-bold ">
+        <h2 className="dark:text-white text-gray-900 text-2xl font-bold ">
           Arrastra & Suelta Archivos
         </h2>
-        <div className=" bg-slate-800 h-60 w-2/3 my-5 py-5 px-5 rounded-2xl">
+        <div className=" shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 h-60 w-2/3 my-5 py-5 px-5 rounded-2xl">
           <div className="flex justify-center items-center h-full border-dashed border-blue-800 border-2 w-full rounded-2xl">
             <input
               onChange={(e) => {
@@ -70,7 +70,7 @@ function Image() {
               id="inputfile"
             />
             {filename.length > 0 ? (
-              <div className="text-white px-2 py-2 flex flex-col gap-5 rounded-md">
+              <div className="dark:text-white text-gray-900 px-2 py-2 flex flex-col gap-5 rounded-md">
                 <span>Quiers enviar este archivo ?</span>
                 <div className="flex justify-around">
                   <button
@@ -98,7 +98,7 @@ function Image() {
           </div>
         </div>
         {file && (
-          <div className="flex items-center justify-between px-2 py-2 h-12 w-2/3 bg-slate-800 text-white rounded-lg">
+          <div className="flex items-center justify-between px-2 py-2 h-12 w-2/3 shadow dark:border bg-white  dark:bg-gray-800 dark:text-white text-gray-900 dark:border-gray-700 rounded-lg">
             <span>{filename}</span>
             <div className="flex gap-5">
               <button

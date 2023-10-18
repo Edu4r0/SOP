@@ -18,14 +18,14 @@ function Cardreports() {
       {Cards.map((card, index) => (
         <div
           key={index}
-          className={`w-5/6 hover:h-44 duration-300 relative h-40 px-2 py-5 cursor-pointer rounded-md bg-slate-700`}
+          className={`w-5/6 hover:h-48 duration-300 overflow-hidden relative h-40 px-2 py-5 cursor-pointer rounded-md shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700`}
         >
-          <div className="bg-slate-950 w-full absolute -top-0 rounded-t-md -left-0 h-4"></div>
+          <div className="bg-slate-950  w-full absolute -top-0 rounded-t-md -left-0 h-4"></div>
           <div className="flex flex-col">
             <div className="flex">
-              <div className="flex text-slate-50 gap-4 w-full items-center">
+              <div className="flex dark:text-slate-50 text-gray-900 gap-4 w-full items-center">
                 <img
-                  className="bg-slate-800 rounded-md px-2 py-2"
+                  className="dark:bg-slate-800 bg-slate-200 rounded-md px-2 py-2"
                   src={`${card.img}.png`}
                 />
                 <span className="font-bold ">{card.name}</span>
@@ -33,10 +33,10 @@ function Cardreports() {
               <span className="text-xs text-slate-500">{last[index].last}</span>
             </div>
             <div
-              className={`bg-slate-800 rounded-md px-2 
+              className={`dark:bg-slate-800 bg-slate-200 rounded-md px-2 py-2
               } flex my-2`}
             >
-              <p className="text-xs text-slate-500">{card.coment}</p>
+              <p className="text-xs dark:text-slate-500 text-gray-900">{card.coment}</p>
             </div>
             <div className="flex justify-end">
               <button

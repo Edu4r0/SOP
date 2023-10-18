@@ -21,9 +21,9 @@ function UsersTable() {
     fetchData();
   }, []);
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-tl-md rounded-tr-md">
+    <div className="relative overflow-x-auto shadow  bg-white  dark:bg-gray-800  sm:rounded-tl-md rounded-tr-md">
       <table className="min-w-full">
-        <thead className="uppercase text-sm text-slate-400 bg-slate-950 text-center">
+        <thead className="uppercase text-sm text-gray-900 bg-slate-200 dark:text-slate-400 dark:bg-slate-950 text-center">
           <tr>
             <th>id</th>
             <th>nombre</th>
@@ -32,7 +32,7 @@ function UsersTable() {
             <th>puntos</th>
           </tr>
         </thead>
-        <tbody className="text-white text-center">
+        <tbody className="dark:text-white text-gray-900 text-center">
           {DataUser.length > 0 ? (
             DataUser.map((user) => (
               <tr
@@ -56,7 +56,7 @@ function UsersTable() {
                   )}
                 </td>
                 <td>
-                  
+                  {user.points}
                 </td>
               </tr>
             ))
@@ -68,7 +68,7 @@ function UsersTable() {
                     <div className="mx-5 h-10 w-10 border-4 border-blue-700 border-r-transparent animate-spin rounded-full"></div>
                   ) : (
                     <div>
-                      <span>No hay datos</span>
+                      <span className="text-gray-900 dark:text-white">No hay datos</span>
                       <a href=""></a>
                     </div>
                   )}

@@ -56,23 +56,25 @@ function SurveyCreate() {
   };
 
   return (
-    <div className="bg-slate-900 w-full flex items-start justify-between py-10 px-10 ">
-      <div className="bg-slate-600 rounded-md h-4/5 w-1/3 gap-10 text-white px-5 py-5">
+    <div className="dark:bg-slate-900 bg-slate-50 w-full flex items-start justify-between py-10 px-10 ">
+      <div className="shadow dark:border bg-white  dark:bg-gray-600 dark:border-gray-700 rounded-md h-4/5 w-1/3 gap-10 text-white px-5 py-5">
         <div className="text-center rounded-md">
-          <h2 className="text-gray-100 text-2xl font-bold">
+          <h2 className="dark:text-gray-100 text-gray-900 text-2xl font-bold">
             Diseñador de Preguntas
           </h2>
         </div>
 
-        <div className="flex gap-10 my-3">
-          <label>Titulo:</label>
+        <div className="flex gap-2 my-3">
           <input
-            className=" outline-none w-2/3 bg-slate-800 rounded-md px-1 py-1"
+            className=" outline-none w-2/3 border border-gray-300 bg-gray-50 dark:bg-slate-800  text-gray-900 dark:text-gray-100 rounded-md px-1 py-1"
             type="text"
             value={title}
             placeholder="Titulo de la Pregunta"
             onChange={(e) => settitle(e.target.value)}
           />
+        
+            <input  className="dark:text-gray-100 text-gray-900 border rounded-md px-2 bg-gray-50 border-gray-300" placeholder="Fecha" type="date" name="" id="" />
+         
         </div>
         <div>
           <span className="">Opciones</span>
@@ -84,7 +86,7 @@ function SurveyCreate() {
                   <li
                     onClick={() => handleCorrect(index)}
                     className={`flex justify-between cursor-pointer ${
-                      answers[index].isCorrect ? "bg-green-400" : "bg-slate-800"
+                      answers[index].isCorrect ? "bg-green-400" : "bg-gray-200 text-gray-900 dark:text-gray-100 dark:bg-slate-800"
                     } px-2 py-2 rounded-md`}
                     key={index}
                   >
@@ -109,7 +111,7 @@ function SurveyCreate() {
               type="text"
               id="answer"
               autoComplete="off"
-              className=" outline-none w-2/3 h-1/6 bg-slate-800 rounded-md px-1 py-1"
+              className=" outline-none w-2/3 border border-gray-300 bg-gray-50 dark:bg-slate-800  text-gray-900 dark:text-gray-100 rounded-md px-1 py-1"
               value={newAnswer}
               onChange={(e) => setNewAnswer(e.target.value)}
               placeholder="Nueva respuesta"
@@ -122,7 +124,7 @@ function SurveyCreate() {
             </button>
           </div>
         </div>
-        <div className="flex  justify-center items-end px-2 bg-slate-700 hover:bg-slate-800 rounded-md">
+        <div className="flex  justify-center items-end px-2 dark:text-gray-100 text-gray-900 font-bold dark:bg-slate-700 dark:hover:bg-slate-800 bg-gray-300 hover:bg-gray-400  rounded-md">
           <button className="py-2 " onClick={saveQuestion}>
             Añadir Pregunta
           </button>

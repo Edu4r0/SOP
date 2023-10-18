@@ -4,7 +4,7 @@ const Menus = [
   { id: 2, title: "Reportes", src: "reports", href: "/reports" },
   { id: 3, title: "Avisos", src: "image", href: "/image" },
   { id: 4, title: "Encuestas", src: "survey", href: "/survey" },
-  { id: 5, title: "Juegos", src: "rocket", href: "/games" },
+  { id: 5, title: "Juegos", src: "rocket", href: "#" },
   { id: 6, title: "Tareas", src: "hourglass", href: "#", imgdrop: "chevron-down" },
   { id: 7, title: "Todo List", src: "hourglass", href: "/tasks" },
   { id: 8, title: "Programacion", src: "hourglass", href: "/tasks" },

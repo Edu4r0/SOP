@@ -62,20 +62,20 @@ function Dashboard() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 w-full py-5 px-5">
+    <main className="bg-gray-50  dark:bg-gray-900 w-full py-5 px-5">
       <div className="min-w-full">
         <div className="flex justify-between gap-10">
-          <div className="flex justify-between px-5 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 h-44 w-1/3 rounded-md">
+          <div className="flex justify-between px-5 py-5 shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 h-44 w-1/3 rounded-md">
             <div className="flex gap-16 justify-between">
               <div className="flex flex-col justify-between">
-                <div className="h-8 text-sm w-52 px-2 py-1 bg-blue-800 rounded-md shadow-md text-center text-white">
+                <div className="h-8 text-sm w-52 px-2 py-1  bg-slate-100 dark:bg-slate-800 rounded-md text-center text-gray-900 dark:text-white">
                   {datenow}
                 </div>
                 <div>
-                  <h1 className="text-white text-2xl font-bold py-1">
+                  <h1 className="dark:text-white text-gray-900 text-2xl font-bold py-1">
                     Bienvenido, Admin
                   </h1>
-                  <p className="text-white text-sm">
+                  <p className="dark:text-white text-gray-900 text-sm">
                     Que tengas un feliz {dayselect}
                   </p>
                 </div>
@@ -86,11 +86,11 @@ function Dashboard() {
             onClick={() => {
               users();
             }}
-            className="border border-slate-700 bg-slate-700 h-44 w-2/6 rounded-md flex-none overflow-y-hidden cursor-pointer text-sm"
+            className="shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 h-44 w-2/6 rounded-md flex-none overflow-y-hidden cursor-pointer text-sm"
           >
             <UsersTable className="hover:bg-black" />
           </div>
-          <div className="border border-slate-700 w-1/4 h-44 py-1 bg-slate-800 rounded-md flex justify-center items-start">
+          <div className="shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 w-1/4 h-44 py-1 rounded-md flex justify-center items-start">
             <ResponsiveContainer>
               <PieChart>
                 <Pie
@@ -134,10 +134,10 @@ function Dashboard() {
           </div>
         </div>
 
-        <hr className="my-3 border border-slate-600 rounded-lg mx-auto" />
+        <hr className="my-3 border border-slate-300 dark:border-slate-600 rounded-lg mx-auto" />
         <div className="flex justify-between mx-auto ">
-          <div className="bg-slate-800 border border-slate-700 h-32 w-1/5 rounded-md flex px-5 py-5">
-            <span className="text-slate-400">Uso</span>
+          <div className="shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 h-32 w-1/5 rounded-md flex px-5 py-5">
+            <span className="dark:text-slate-400 text-gray-900 ">Uso</span>
             <div className="w-3/4 ">
               <ResponsiveContainer>
                 <LineChart width={300} height={100} data={data}>
@@ -177,7 +177,7 @@ function Dashboard() {
           />
         </div>
 
-        <div className="border border-slate-700 my-5 bg-slate-800 h-52 w-full rounded-md">
+        <div className="shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 my-5 h-52 w-full rounded-md">
           <ResponsiveContainer width={"98%"}>
             <LineChart
               width={500}

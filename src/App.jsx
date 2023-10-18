@@ -47,10 +47,8 @@ function App() {
           <Header />
         </header>
 
-        <div className="flex font-poppins">
-          <nav>
+        <div className="flex font-poppins ">
             <Sidebar />
-          </nav>
           <Config />
         </div>
       </>
