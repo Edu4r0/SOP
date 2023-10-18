@@ -8,7 +8,7 @@ function Taks() {
     async function getData() {
       setLoading(true)
       try {
-        const response = await fetch("http://localhost:5000/api/tasksList");
+        const response = await fetch("https://api-sop.vercel.app/api/tasksList");
         const data = await response.json();
         settasks(data);
       } catch (error) {
@@ -23,7 +23,7 @@ function Taks() {
 
   async function postData(data) {
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
+      const response = await fetch("https://api-sop.vercel.app/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

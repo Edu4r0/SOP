@@ -13,7 +13,7 @@ function Image() {
       toast.loading('Subiendo...')
       try {
         const response = await fetch(
-          `http://localhost:5000/api/create/notice?url=${fileURL}`,
+          `https://api-sop.vercel.app/api/create/notice?url=${fileURL}`,
           {
             method: "POST",
           }

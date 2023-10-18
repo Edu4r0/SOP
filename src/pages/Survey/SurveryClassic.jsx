@@ -19,7 +19,7 @@ function SurveyClassic() {
   useEffect(() => {
     async function fechData() {
       try {
-        const response = await fetch("http://localhost:5000/api/surveyList");
+        const response = await fetch("https://api-sop.vercel.app/api/surveyList");
         const data = await response.json();
         setpreguntas(data);
       } catch (error) {
