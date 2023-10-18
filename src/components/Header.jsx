@@ -3,7 +3,7 @@ function Header() {
     <>
       <header className="flex bg-white  dark:bg-gray-950 items-center justify-between flex-wrap px-5 py-2">
         <div className="w-1/7">
-          <a href="https://flowbite.com/" className="flex items-center">
+          <a href="/dashboard" className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-6 mr-3"
