@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
+import fechAPI from "../data/FechApi";
 function Taks() {
   const [tasks, settasks] = useState([]);
   const [loading, setLoading] = useState(false)
@@ -8,8 +9,7 @@ function Taks() {
     async function getData() {
       setLoading(true)
       try {
-        const response = await fetch("https://api-sop.vercel.app/api/tasksList");
-        const data = await response.json();
+        const data = await fechAPI('tasksList');
         settasks(data);
       } catch (error) {
         console.error.message;

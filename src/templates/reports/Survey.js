@@ -1,8 +1,8 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import fechAPI from "../../data/FechApi";
-async function printUser() {
-    const response = await fechAPI('userslist')
+async function printSurvey() {
+    const response = await fechAPI('surveylist')
     const data = await response.json();
     const tableata = data.map((user)=> [user.id, user.name, user.last, user.status])
     const doc = new jsPDF()
@@ -12,4 +12,4 @@ async function printUser() {
     })
     doc.save('users.pdf')
 }
-export default printUser;
+export default printSurvey;

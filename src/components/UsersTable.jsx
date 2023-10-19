@@ -9,7 +9,7 @@ function UsersTable() {
     async function fetchData() {
       try {
         setloading(true);
-        const data = await fechAPI("UsersList");
+        const data = await fechAPI('UsersList');
         setDataUser(data);
       } catch (error) {
         console.log(error.message);

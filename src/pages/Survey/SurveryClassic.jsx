@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import colors from "../../data/Color";
 import Coffeti from "../../components/Coffeti";
+import fechAPI from "../../data/FechApi";
 
 function SurveyClassic() {
   const { user } = useParams();
@@ -19,8 +20,7 @@ function SurveyClassic() {
   useEffect(() => {
     async function fechData() {
       try {
-        const response = await fetch("https://api-sop.vercel.app/api/surveyList");
-        const data = await response.json();
+        const data = await fechAPI('surveyList');
         setpreguntas(data);
       } catch (error) {
         console.log(error.message);
