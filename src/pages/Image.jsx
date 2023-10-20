@@ -13,7 +13,7 @@ function Image() {
       toast.loading('Subiendo...')
       try {
         const response = await fetch(
-          `https://api-sop.vercel.app/api/create/notice?url=${fileURL}`,
+          `http://localhost:5000/api/create/notice?url=${fileURL.secure_url}`,
           {
             method: "POST",
           }
@@ -22,8 +22,9 @@ function Image() {
         if (response.status == 200) {
           toast.success("Archivo subido con exito");
         }
+        
       } catch (error) {
-        toast.error("Error: " + error.message);
+          toast.error("Error: " + error);
       }
     }
 

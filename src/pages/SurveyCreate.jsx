@@ -1,23 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Toaster, toast } from "sonner";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
   const [loadsurvey, setloadsurvey] = useState([]);
   const [newAnswer, setNewAnswer] = useState("");
+  const [date, setDate] = useState("");
 
   async function postData(questionData) {
     try {
       toast.loading("Cargando..");
-      const response = await fetch("https://api-sop.vercel.app/api/survey", {
+      const response = await fetch("http://localhost:5000/api/survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(questionData),
       });
-      if (response.status === 200) setloadsurvey([...loadsurvey, questionData]);
-      toast.success("Enviado con exito");
+      if (response.status === 200) {
+        setloadsurvey([...loadsurvey, questionData]);
+        toast.success("Enviado con exito");
+      }
     } catch (error) {
       toast.error(`Error en el envio ${error.message} `);
     }
@@ -48,6 +51,7 @@ function SurveyCreate() {
 
   const saveQuestion = () => {
     const questionData = {
+      date,
       title: title,
       opciones: answers,
     };
@@ -72,9 +76,14 @@ function SurveyCreate() {
             placeholder="Titulo de la Pregunta"
             onChange={(e) => settitle(e.target.value)}
           />
-        
-            <input  className="dark:text-gray-100 text-gray-900 border rounded-md px-2 bg-gray-50 border-gray-300" placeholder="Fecha" type="date" name="" id="" />
-         
+
+          <input
+            className="dark:text-gray-100 text-gray-900 border rounded-md px-2 bg-gray-50 border-gray-300"
+            placeholder="Fecha"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
         <div>
           <span className="">Opciones</span>
@@ -86,7 +95,9 @@ function SurveyCreate() {
                   <li
                     onClick={() => handleCorrect(index)}
                     className={`flex justify-between cursor-pointer ${
-                      answers[index].isCorrect ? "bg-green-400" : "bg-gray-200 text-gray-900 dark:text-gray-100 dark:bg-slate-800"
+                      answers[index].isCorrect
+                        ? "bg-green-400"
+                        : "bg-gray-200 text-gray-900 dark:text-gray-100 dark:bg-slate-800"
                     } px-2 py-2 rounded-md`}
                     key={index}
                   >

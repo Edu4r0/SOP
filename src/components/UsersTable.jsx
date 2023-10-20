@@ -27,7 +27,7 @@ function UsersTable() {
           <tr>
             <th>id</th>
             <th>nombre</th>
-            <th>ultimo contacto</th>
+            <th >ultimo contacto</th>
             <th>status</th>
             <th>puntos</th>
           </tr>

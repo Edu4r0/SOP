@@ -16,6 +16,7 @@ function SurveyClassic() {
   const [preguntas, setpreguntas] = useState([]);
   const [optionselect, setOptionselect] = useState([]);
   const [points, setPoints] = useState(0)
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     async function fechData() {
@@ -24,6 +25,9 @@ function SurveyClassic() {
         setpreguntas(data);
       } catch (error) {
         console.log(error.message);
+      }
+      finally{
+        setloading(false)
       }
     }
     fechData();
@@ -162,10 +166,10 @@ function SurveyClassic() {
             </div>
             <hr className="border border-slate-500" />
            <div className="h-44 overflow-x-auto rounded-md flex flex-col gap-2">
-           {preguntas.map((pregunta) => (
+           {preguntas.map((pregunta,index) => (
               <div
                 className="flex gap-2 flex-col bg-slate-600 px-2 py-2 rounded-md justify-center items-center"
-                key={pregunta.survey_information.title}
+                key={index}
               >
                 <span className="bg-slate-800 flex justify-center w-full py-1 rounded-md">
                   {pregunta.survey_information.title}
@@ -198,6 +202,14 @@ function SurveyClassic() {
         </div>
       </main>
     );
+  if(loading)
+     return (
+      <div>
+
+      </div>
+    
+      )       
+
 
   if (preguntas.length === 0)
     return (
@@ -206,10 +218,10 @@ function SurveyClassic() {
     </div>
     );
   return (
-    <main className="bg-slate-950 text-white font-poppins h-screen px-5 py-5">
+    <main className="dark:bg-slate-950 text-gray-900 bg-gray-50 dark:text-white font-poppins h-screen px-5 py-5">
       <div className="">
         <div className="flex justify-between ">
-          <span className="px-2 py-2 bg-slate-800 rounded-md">
+          <span className="px-2 py-2 bg-gray-50 border border-gray-300 dark:bg-slate-800 rounded-md">
             {" "}
             Pregunta {preguntaActual + 1} de {preguntas.length}{" "}
           </span>
@@ -251,7 +263,7 @@ function SurveyClassic() {
               index
             )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
             disabled={areDisabled}
-            key={respuesta.textoRespuesta}
+            key={index}
             onClick={() =>
               handleAnswerSubmit(respuesta.isCorrect, respuesta.textoRespuesta)
               

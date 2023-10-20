@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Cards from "../data/Reports";
 import printUser from "../templates/reports/User";
+import printSurvey from "../templates/reports/Survey";
+import printTask from "../templates/reports/Task";
 
 function Cardreports() {
   const [last, setlast] = useState(Cards);
@@ -10,7 +12,7 @@ function Cardreports() {
     const updatelaast = [...last];
     updatelaast[index].last = lasgenerate;
     setlast([...last, updatelaast]);
-    printUser()
+    printTask()
   }
 
   return (

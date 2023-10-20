@@ -1,16 +1,23 @@
 
 import { initializeApp } from "firebase/app";
-import {getAuth} from "firebase/auth"
+import { getAuth } from "firebase/auth"
 
+const apiKey = import.meta.env.VITE_apiKey
+const authDomain = import.meta.env.VITE_authDomain
+const projectId = import.meta.env.VITE_projectId
+const storageBucket = import.meta.env.VITE_storageBucket
+const messagingSenderId = import.meta.env.VITE_storageBucket
+const appId = import.meta.env.VITE_appId
+const measurementId = import.meta.env.VITE_measurementId
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAXYkmR-MyAn10TydajTJcLEGsQDr5-KB0",
-    authDomain: "speedy-toolbox-378403.firebaseapp.com",
-    projectId: "speedy-toolbox-378403",
-    storageBucket: "speedy-toolbox-378403.appspot.com",
-    messagingSenderId: "463994777826",
-    appId: "1:463994777826:web:3b328c423697726114aebb",
-    measurementId: "G-NTTGPPYJEQ"
+    apiKey: apiKey,
+    authDomain: authDomain,
+    projectId: projectId,
+    storageBucket: storageBucket,
+    messagingSenderId: messagingSenderId,
+    appId: appId,
+    measurementId: measurementId
 };
 
 const app = initializeApp(firebaseConfig);

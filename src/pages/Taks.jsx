@@ -47,7 +47,7 @@ function Taks() {
     const date = e.target.date.value;
     const descripcion = e.target.descripcion.value;
     const data = {
-      name: text,
+      npmbre: text,
       descripcion,
       date,
       completed: false,
@@ -120,7 +120,7 @@ function Taks() {
                       : "no-underline"
                   }`}
                 >
-                  <span>{task.task_information.name}</span>
+                  <span>{task.task_information.nombre}</span>
                   <div>
                     <span className="text-slate-400">{task.task_information.descripcion}</span>
                   </div>
