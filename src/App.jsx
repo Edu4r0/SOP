@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Config from "./pages/Config";
 import Games from "./pages/Games";
 import NotFound from "./pages/NotFound";
+import WarningClassic from "./pages/Warning/WarningClassic";
 function App() {
   const SingIn = () => {
     return (
@@ -172,6 +173,12 @@ function App() {
     );
   };
 
+  const Warning = () => {
+    return (
+     <WarningClassic/>
+    );
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -187,6 +194,8 @@ function App() {
         <Route path="/reports" element={<Report />} />
         <Route path="/setting" element={<Settings />} />
         <Route path="/games" element={<Game />} />
+        <Route path="/warning/warningclassi" element={<Warning/>} />
+
       </Routes>
     </BrowserRouter>
   );

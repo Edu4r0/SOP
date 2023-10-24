@@ -8,12 +8,13 @@ function Image() {
   const [filename, setfilename] = useState("");
   const [fileURL, setFileURL] = useState("");
 
+  const url = import.meta.env.VITE_URL_API
   useEffect(() => {
     async function sendURL() {
       toast.loading('Subiendo...')
       try {
         const response = await fetch(
-          `http://localhost:5000/api/create/notice?url=${fileURL.secure_url}`,
+          `${url}create/notice?url=${fileURL}`,
           {
             method: "POST",
           }
