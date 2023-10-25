@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function NotFound(props) {
   // eslint-disable-next-line react/prop-types
   let {name='404 No Found'} = props;
@@ -7,9 +9,11 @@ function NotFound(props) {
         <div>
           <span className="text-3xl font-bold">{name}</span>
           <br />
+          <Link to={'/exit'}>
           <button className="my-5 bg-blue-600 rounded-md px-10 py-2">
             Salir
           </button>
+          </Link>
         </div>
         <img className="w-3/4" src="/404 Error.svg" alt="404" />
       </div>

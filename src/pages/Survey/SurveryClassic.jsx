@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import colors from "../../data/Color";
 import Coffeti from "../../components/Coffeti";
 import fechAPI from "../../data/FechApi";
+import Loading from "../../components/Loading";
+import NotFound from "../NotFound";
 
 function SurveyClassic() {
   const { user } = useParams();
@@ -15,19 +18,18 @@ function SurveyClassic() {
   const [answersShown, setAnswersShown] = useState(false);
   const [preguntas, setpreguntas] = useState([]);
   const [optionselect, setOptionselect] = useState([]);
-  const [points, setPoints] = useState(0)
+  const [points, setPoints] = useState(0);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
     async function fechData() {
       try {
-        const data = await fechAPI('surveyList');
+        const data = await fechAPI("surveyList");
         setpreguntas(data);
       } catch (error) {
         console.log(error.message);
-      }
-      finally{
-        setloading(false)
+      } finally {
+        setloading(false);
       }
     }
     fechData();
@@ -107,7 +109,7 @@ function SurveyClassic() {
   if (answersShown)
     return (
       <main className="bg-slate-800  h-screen flex justify-center items-center text-white font-poppins">
-        {puntuación > preguntas.length - puntuación ? <Coffeti /> : ''}
+        {puntuación > preguntas.length - puntuación ? <Coffeti /> : ""}
         <div className="bg-slate-700 flex justify-between flex-col  w-1/3 rounded-md px-5 py-5 text-center">
           <div className="numero-pregunta">
             <span className="bg-slate-900 w-full font-bold flex justify-center py-2 rounded-md fo">
@@ -159,64 +161,51 @@ function SurveyClassic() {
                     <span className="text-slate-100">Incorrectas</span>
                   </div>
                   <div className="flex justify-center">
-                    <span className="px-2 py-2 text-2xl">{preguntas.length - puntuación}</span>
+                    <span className="px-2 py-2 text-2xl">
+                      {preguntas.length - puntuación}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
             <hr className="border border-slate-500" />
-           <div className="h-44 overflow-x-auto rounded-md flex flex-col gap-2">
-           {preguntas.map((pregunta,index) => (
-              <div
-                className="flex gap-2 flex-col bg-slate-600 px-2 py-2 rounded-md justify-center items-center"
-                key={index}
-              >
-                <span className="bg-slate-800 flex justify-center w-full py-1 rounded-md">
-                  {pregunta.survey_information.title}
-                </span>
-                {pregunta.survey_information.opciones.map((opcion, index) => (
-                  <div className="flex justify-center w-2/5" key={index}>
-                    <span
-                      className={`border-2 cursor-pointer  ${
-                        opcion.isCorrect
-                          ? " border-green-500 hover:bg-green-500  font-medium"
-                          : " border-red-500  hover:bg-red-500"
-                      } rounded-md w-3/4`}
-                    >
-                      {opcion.textoRespuesta}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
-           </div>
+            <div className="h-44 overflow-x-auto rounded-md flex flex-col gap-2">
+              {preguntas.map((pregunta, index) => (
+                <div
+                  className="flex gap-2 flex-col bg-slate-600 px-2 py-2 rounded-md justify-center items-center"
+                  key={index}
+                >
+                  <span className="bg-slate-800 flex justify-center w-full py-1 rounded-md">
+                    {pregunta.survey_information.title}
+                  </span>
+                  {pregunta.survey_information.opciones.map((opcion, index) => (
+                    <div className="flex justify-center w-2/5" key={index}>
+                      <span
+                        className={`border-2 cursor-pointer  ${
+                          opcion.isCorrect
+                            ? " border-green-500 hover:bg-green-500  font-medium"
+                            : " border-red-500  hover:bg-red-500"
+                        } rounded-md w-3/4`}
+                      >
+                        {opcion.textoRespuesta}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-          <button
-            className="flex justify-center gap-x-2 bg-blue-600 py-2 rounded-md px-10"
-            onClick={() => {
-              window.location("/survey/surveyclassi");
-            }}
-          >
-            Salir
-          </button>
+          <Link to={"/exit"}>
+            <button className="flex justify-center gap-x-2 bg-blue-600 py-2 rounded-md px-10">
+              Salir
+            </button>
+          </Link>
         </div>
       </main>
     );
-  if(loading)
-     return (
-      <div>
+  if (loading) return <Loading/>;
 
-      </div>
-    
-      )       
-
-
-  if (preguntas.length === 0)
-    return (
-    <div>
-      no hay preguntas
-    </div>
-    );
+  if (preguntas.length === 0) return <NotFound name='No hay preguntas'/>;
   return (
     <main className="dark:bg-slate-950 text-gray-900 bg-gray-50 dark:text-white font-poppins h-screen px-5 py-5">
       <div className="">
@@ -254,24 +243,30 @@ function SurveyClassic() {
         </div>
       </div>
       <div className="flex justify-center h-3/5 items-center text-2xl">
-        {preguntas.length > 0 ? preguntas[preguntaActual].survey_information.title : ""}
+        {preguntas.length > 0
+          ? preguntas[preguntaActual].survey_information.title
+          : ""}
       </div>
       <div className="flex justify-between gap-5  items-end">
-        {preguntas[preguntaActual].survey_information.opciones.map((respuesta, index) => (
-          <button
-            className={`${color(
-              index
-            )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
-            disabled={areDisabled}
-            key={index}
-            onClick={() =>
-              handleAnswerSubmit(respuesta.isCorrect, respuesta.textoRespuesta)
-              
-            }
-          >
-            {respuesta.textoRespuesta}
-          </button>
-        ))}
+        {preguntas[preguntaActual].survey_information.opciones.map(
+          (respuesta, index) => (
+            <button
+              className={`${color(
+                index
+              )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
+              disabled={areDisabled}
+              key={index}
+              onClick={() =>
+                handleAnswerSubmit(
+                  respuesta.isCorrect,
+                  respuesta.textoRespuesta
+                )
+              }
+            >
+              {respuesta.textoRespuesta}
+            </button>
+          )
+        )}
       </div>
     </main>
   );
