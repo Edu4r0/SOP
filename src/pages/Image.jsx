@@ -120,7 +120,7 @@ function Image() {
           </div>
         )}
       </div>
-      <Toaster theme="system" closeButton duration={10000} />
+      <Toaster theme="system" closeButton />
     </main>
   );
 }
