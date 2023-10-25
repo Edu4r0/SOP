@@ -93,6 +93,9 @@ function Dashboard() {
           <div className="shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 w-1/4 h-44 py-1 rounded-md flex justify-center items-start">
             <ResponsiveContainer>
               <PieChart>
+                <Tooltip
+                  contentStyle={{  background: "#FFFFFF", border: "none" }}
+                />
                 <Pie
                   data={pieChartdata}
                   cx={150}

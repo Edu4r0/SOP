@@ -1,7 +1,7 @@
 const pieChartdata = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
+    { name: 'Usuarios', value: 1 },
+    { name: 'Avisos', value: 2 },
+    { name: 'Encuestas', value: 1 },
+    { name: 'Tareas', value: 1 },
   ];
  export default pieChartdata;
