@@ -10,7 +10,7 @@ function SurveyCreate() {
   async function postData(questionData) {
     try {
       toast.loading("Cargando..");
-      const response = await fetch("https://api-sop.vercel.app/api/v1/survey", {
+      const response = await fetch("https://api-sop.vercel.app/api/v1/create/survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
