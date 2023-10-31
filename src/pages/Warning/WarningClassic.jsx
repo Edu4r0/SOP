@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import fechAPI from "../../data/FechApi";
 import Loading from "../../components/Loading";
 
@@ -49,14 +48,13 @@ function WarningClassic() {
           <img className="h-full" src={dataUrl.secure_url} alt="Aviso" />
           <div className="absolute bottom-0 left-0 right-0 my-10 grid place-items-center">
             {exit ? (
-              <Link to={'/exit'}>
-                <button
-                onClick={() => window.location("/survey/surveyclassic/exit")}
+               <a href="exit">
+                 <button
                 className="py-2 bg-blue-800 w-44 text-slate-50 rounded-md font-poppins"
               >
                 Salir
               </button>
-              </Link>
+               </a>
             ) : (
               <span className="text-4xl font-bold font-poppins text-blue-800 animate-ping ease-out">
                 {numero}
