@@ -40,12 +40,12 @@ function WarningClassic() {
   }, []);
 
   return (
-    <main className="h-full flex flex-col justify-between bg-gray-900">
+    <main className="h-screen flex flex-col justify-between bg-gray-900">
       {loading ? (
         <Loading />
       ) : (
         <section className="relative">
-          <img className="h-full" src={dataUrl.secure_url} alt="Aviso" />
+          <img className="h-screen w-screen" src={dataUrl.secure_url} alt="Aviso" />
           <div className="absolute bottom-0 left-0 right-0 my-10 grid place-items-center">
             {exit ? (
                <a href="exit">
