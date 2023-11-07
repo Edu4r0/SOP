@@ -1,6 +1,6 @@
 function Survey() {
   return (
-    <div className="bg-gray-50  dark:bg-gray-900 w-full py-10">
+    <main className="bg-gray-50 h-screen dark:bg-gray-900 w-full py-10">
       <h2 className="dark:text-white text-gray-900 text-3xl text-center">
         Elija como quiere crear su encuesta{" "}
       </h2>
@@ -25,7 +25,7 @@ function Survey() {
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

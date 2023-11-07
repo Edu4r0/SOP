@@ -1,6 +1,6 @@
 function Config() {
   return (
-    <main className="bg-gray-50 h-[100vh] dark:bg-gray-900 w-full px-5 py-5">
+    <main className="bg-gray-50  dark:bg-gray-900 w-full px-5 py-5">
       <h2 className="font-bold text-2xl text-gray-900 dark:text-white">
         Configuracion
       </h2>

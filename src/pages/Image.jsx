@@ -54,7 +54,7 @@ function Image() {
   };
 
   return (
-    <main className="bg-gray-50  dark:bg-gray-900 w-full">
+    <main className="bg-gray-50 h-screen dark:bg-gray-900 w-full">
       <div className="flex flex-col items-center justify-center py-10">
         <h2 className="dark:text-white text-gray-900 text-2xl font-bold ">
           Arrastra & Suelta Archivos

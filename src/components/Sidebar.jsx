@@ -19,7 +19,7 @@ function Sidebar() {
       <div
         className={`${
           open ? "w-48" : "w-20"
-        }  h-[100vh] dark:bg-slate-950  bg-gray-900  dark:border-gray-700 flex relative duration-300`}
+        }  h-full dark:bg-slate-950  bg-gray-900  dark:border-gray-700 flex relative duration-300`}
       >
         <img
           onClick={() => setopen(!open)}

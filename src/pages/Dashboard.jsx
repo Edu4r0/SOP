@@ -62,7 +62,7 @@ function Dashboard() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <main className="bg-gray-50  dark:bg-gray-900 w-full py-5 px-5">
+    <main className="bg-gray-50 h-screen dark:bg-gray-900 w-full py-5 px-5">
       <div className="min-w-full">
         <div className="flex justify-between gap-10">
           <div className="flex justify-between px-5 py-5 shadow dark:border bg-white  dark:bg-gray-800 dark:border-gray-700 h-44 w-1/3 rounded-md">

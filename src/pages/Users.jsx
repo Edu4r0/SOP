@@ -8,7 +8,7 @@ function Users() {
       <h2 className="font-bold dark:text-white text-2xl">Usuarios</h2>
       <hr className="my-3 border border-slate-300 dark:border-slate-600 rounded-lg mx-auto" />
       
-      <div className="px-11 py-10">
+      <div className="px-11 py-10 h-screen">
          <UsersTable/> 
       </div>
     </main>

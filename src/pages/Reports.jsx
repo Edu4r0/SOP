@@ -3,7 +3,7 @@ import { Toaster, toast } from "sonner";
 
 function Reports() {
   return (
-    <main className="w-full bg-gray-50  dark:bg-gray-900 px-5 py-5">
+    <main className="w-full bg-gray-50 h-screen dark:bg-gray-900 px-5 py-5">
       <h2 className="text-2xl font-bold dark:text-white text-gray-900">
         Reportes
       </h2>

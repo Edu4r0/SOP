@@ -21,7 +21,7 @@ function UsersTable() {
     fetchData();
   }, []);
   return (
-    <div className="relative overflow-x-auto shadow  bg-white  dark:bg-gray-800  sm:rounded-tl-md rounded-tr-md">
+    <div className="relative  overflow-x-auto shadow  bg-white  dark:bg-gray-800  sm:rounded-tl-md rounded-tr-md">
       <table className="min-w-full">
         <thead className="uppercase text-sm text-gray-900 bg-slate-200 dark:text-slate-400 dark:bg-slate-950 text-center">
           <tr>
@@ -34,12 +34,12 @@ function UsersTable() {
         </thead>
         <tbody className="dark:text-white text-gray-900 text-center">
           {DataUser.length > 0 ? (
-            DataUser.map((user) => (
+            DataUser.map((user,index) => (
               <tr
                 className="border-b dark:bg-gray-800 dark:border-gray-700"
                 key={user.name}
               >
-                <td> {user.id}</td>
+                <td> {index}</td>
                 <td>{user.name}</td>
                 <td>{user.last}</td>
                 <td className="flex my-2 justify-center items-center">
