@@ -41,6 +41,7 @@ function Image() {
     inputfile.click();
   }
   function handleChange({ target: { files } }) {
+    console.log(files)
     setfileUnpload(files[0]);
     setfilename(files[0].name);
     setfile(URL.createObjectURL(files[0]));
@@ -53,9 +54,21 @@ function Image() {
     setFileURL(response);
   };
 
+  function onDropFile(e) {
+    e.preventDefault();
+    const fileDrop = e.dataTransfer.files[0]
+  
+    if (fileDrop != undefined){
+      setfileUnpload(fileDrop);
+      setfilename(fileDrop.name); 
+      setfile(URL.createObjectURL(fileDrop))
+      
+    }
+  }
+
   return (
     <main className="bg-gray-50 h-screen dark:bg-gray-900 w-full">
-      <div className="flex flex-col items-center justify-center py-10">
+      <div onDrop={(e)=>(onDropFile(e))} onDragOver={(e)=>(onDropFile(e))}  className="flex flex-col items-center justify-center py-10">
         <h2 className="dark:text-white text-gray-900 text-2xl font-bold ">
           Arrastra & Suelta Archivos
         </h2>
