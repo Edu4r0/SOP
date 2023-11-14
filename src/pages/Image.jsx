@@ -22,8 +22,7 @@ function Image() {
 
         if (response.status == 200) {
           toast.success("Archivo subido con exito");
-        }
-        
+        } 
       } catch (error) {
           toast.error("Error: " + error);
       }
@@ -41,7 +40,6 @@ function Image() {
     inputfile.click();
   }
   function handleChange({ target: { files } }) {
-    console.log(files)
     setfileUnpload(files[0]);
     setfilename(files[0].name);
     setfile(URL.createObjectURL(files[0]));
