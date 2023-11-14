@@ -60,7 +60,7 @@ function SurveyCreate() {
   };
 
   return (
-    <div className="dark:bg-slate-900 bg-slate-50 w-full flex items-start justify-between py-10 px-10 ">
+    <div className="dark:bg-slate-900 bg-slate-50 w-full h-screen flex items-start justify-between py-10 px-10 ">
       <div className="shadow dark:border bg-white  dark:bg-gray-600 dark:border-gray-700 rounded-md h-4/5 w-1/3 gap-10 text-white px-5 py-5">
         <div className="text-center rounded-md">
           <h2 className="dark:text-gray-100 text-gray-900 text-2xl font-bold">
