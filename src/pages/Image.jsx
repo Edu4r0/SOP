@@ -21,7 +21,7 @@ function Image() {
         );
 
         if (response.status == 200) {
-          toast.success("Archivo subido con exito");
+          toast.success("Archivo enviado con exito");
         } 
       } catch (error) {
           toast.error("Error: " + error);
