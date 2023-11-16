@@ -60,7 +60,7 @@ function Taks() {
     settasks(updatecompleted);
   }
   return (
-    <main className="bg-gray-50  dark:bg-gray-900 w-full px-5 py-5">
+    <main className="bg-gray-50 h-screen dark:bg-gray-900 w-full px-5 py-5">
       <div className="flex flex-col">
         <h2 className="font-bold text-gray-900 dark:text-white text-2xl">Todo List</h2>
         <hr className="w-full my-3 border border-slate-300 dark:border-slate-600 rounded-lg mx-auto " />

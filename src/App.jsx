@@ -49,7 +49,7 @@ function App() {
         </header>
 
         <div className="flex font-poppins ">
-            <Sidebar />
+            <Sidebar  />
           <Config />
         </div>
       </>
@@ -80,7 +80,7 @@ function App() {
 
         <div className="flex font-poppins">
           <nav>
-            <Sidebar />
+            <Sidebar  />
           </nav>
           <Reports />
         </div>
