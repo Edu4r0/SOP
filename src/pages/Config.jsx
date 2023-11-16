@@ -23,7 +23,7 @@ function Config() {
     const user = users.filter((one) => one.name == usersselect);
     user.length > 0 ? setusersexclude([...usersexclude, user[0]]) : null;
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/create/exclude?name=${usersselect}`, {
+      const response = await fetch(`https://https://api-sop.vercel.app/api/v1/create/exclude?name=${usersselect}`, {
         method : 'POST'
       })
     } catch (error) {
