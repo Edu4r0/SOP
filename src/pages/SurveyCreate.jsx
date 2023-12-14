@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
+import Trash from "../Icon/Trash";
 function SurveyCreate() {
   const [title, settitle] = useState("");
   const [answers, setAnswers] = useState([]);
@@ -10,16 +11,22 @@ function SurveyCreate() {
   async function postData(questionData) {
     try {
       toast.loading("Cargando..");
-      const response = await fetch("https://api-sop.vercel.app/api/v1/create/survey", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(questionData),
-      });
+      const response = await fetch(
+        "https://api-sop.vercel.app/api/v1/create/survey",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(questionData),
+        }
+      );
       if (response.status === 200) {
         setloadsurvey([...loadsurvey, questionData]);
-        toast.success("Enviado con exito");
+        await toast.success("Enviado con exito");
+      }else{
+        await console.log(response);
+        await toast.error(`Error en el envio ${response.error}`);
       }
     } catch (error) {
       toast.error(`Error en el envio ${error.message} `);
@@ -49,7 +56,16 @@ function SurveyCreate() {
     setAnswers(updatedAnswers);
   };
 
+  useEffect(() => {
+    document.getElementById("answer").focus();
+  }, [newAnswer]);
+
   const saveQuestion = () => {
+    if (title.trim() === "") {
+      toast.error("Ingrese un titulo");
+      return;
+    }
+ 
     const questionData = {
       date,
       title: title,
@@ -92,23 +108,24 @@ function SurveyCreate() {
             <ul className="flex flex-col gap-2">
               {answers.length > 0 ? (
                 answers.map((answer, index) => (
-                  <li
-                    onClick={() => handleCorrect(index)}
-                    className={`flex justify-between cursor-pointer ${
-                      answers[index].isCorrect
-                        ? "bg-green-400"
-                        : "bg-gray-200 text-gray-900 dark:text-gray-100 dark:bg-slate-800"
-                    } px-2 py-2 rounded-md`}
-                    key={index}
-                  >
-                    {answer.textoRespuesta}
-                    <button
-                      className="bg-red-500 rounded-md px-2 hover:bg-red-400"
-                      onClick={() => removeAnswer(index)}
+                  <div className="flex justify-center items-center gap-4" key={index}>
+                    <li
+                      onClick={() => handleCorrect(index)}
+                      className={`flex w-full justify-between cursor-pointer ${
+                        answers[index].isCorrect
+                          ? "bg-green-400"
+                          : "bg-gray-200 text-gray-900 dark:text-gray-100 dark:bg-slate-800"
+                      } px-2 py-2 rounded-md`}
+                      key={index}
                     >
-                      Eliminar
-                    </button>
-                  </li>
+                      {answer.textoRespuesta}
+                    </li>
+                    <div>
+                      <button onClick={() => removeAnswer(index)}>
+                        <Trash  />
+                      </button>
+                    </div>
+                  </div>
                 ))
               ) : (
                 <div className="flex justify-center my-20">

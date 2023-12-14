@@ -13,8 +13,6 @@ function SurveyClassic() {
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [puntuación, setPuntuación] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [tiempoRestante, setTiempoRestante] = useState(10);
-  const [areDisabled, setAreDisabled] = useState(false);
   const [answersShown, setAnswersShown] = useState(false);
   const [preguntas, setpreguntas] = useState([]);
   const [optionselect, setOptionselect] = useState([]);
@@ -35,6 +33,13 @@ function SurveyClassic() {
     fechData();
   }, []);
 
+  useEffect(() => {
+    fetch(`https://api-sop.vercel.app/api/v1/points?name=${user}&points=${points}`, {
+      method: "POST",
+    })
+  }, [isFinished])
+  
+
   function handleAnswerSubmit(isCorrect, textoRespuesta) {
     // añadir puntuación
     const selection = {
@@ -52,7 +57,6 @@ function SurveyClassic() {
         setIsFinished(true);
       } else {
         setPreguntaActual(preguntaActual + 1);
-        setTiempoRestante(10);
       }
     }, 1500);
   }
@@ -60,15 +64,6 @@ function SurveyClassic() {
     const colorhover = `${colors[index].color} ${colors[index].hover}`;
     return colorhover;
   }
-
-  useEffect(() => {
-    const intervalo = setInterval(() => {
-      if (tiempoRestante > 0) setTiempoRestante((prev) => prev - 1);
-      if (tiempoRestante === 0) setAreDisabled(true);
-    }, 1000);
-
-    return () => clearInterval(intervalo);
-  }, [tiempoRestante]);
 
   if (isFinished)
     return (
@@ -203,9 +198,9 @@ function SurveyClassic() {
         </div>
       </main>
     );
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
 
-  if (preguntas.length === 0) return <NotFound name='No hay preguntas'/>;
+  if (preguntas.length === 0) return <NotFound name="No hay preguntas" />;
   return (
     <main className="dark:bg-slate-950 text-gray-900 bg-gray-50 dark:text-white font-poppins h-screen px-5 py-5">
       <div className="">
@@ -214,32 +209,7 @@ function SurveyClassic() {
             {" "}
             Pregunta {preguntaActual + 1} de {preguntas.length}{" "}
           </span>
-          <div>
-            {!areDisabled ? (
-              <span
-                className={`py-2 px-2 ${
-                  tiempoRestante <= 4 ? "bg-red-800" : "bg-slate-800"
-                }  rounded-md`}
-              >
-                Tiempo restante: {tiempoRestante}{" "}
-              </span>
-            ) : (
-              <button
-                className="py-2 px-2 bg-yellow-400 rounded-md"
-                onClick={() => {
-                  setTiempoRestante(10);
-                  setAreDisabled(false);
-                  if (preguntaActual === preguntas.length - 1) {
-                    setIsFinished(true);
-                  } else {
-                    setPreguntaActual(preguntaActual + 1);
-                  }
-                }}
-              >
-                Continuar
-              </button>
-            )}
-          </div>
+          <div></div>
         </div>
       </div>
       <div className="flex justify-center h-3/5 items-center text-2xl">
@@ -254,7 +224,6 @@ function SurveyClassic() {
               className={`${color(
                 index
               )}   text-xl text-slate-800 font-bold rounded-md cursor-pointer h-40 w-1/3`}
-              disabled={areDisabled}
               key={index}
               onClick={() =>
                 handleAnswerSubmit(
