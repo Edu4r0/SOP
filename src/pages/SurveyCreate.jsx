@@ -10,6 +10,7 @@ function SurveyCreate() {
 
   async function postData(questionData) {
     try {
+      console.log(questionData)
       toast.loading("Cargando..");
       const response = await fetch(
         "https://api-sop.vercel.app/api/v1/create/survey",
@@ -57,13 +58,22 @@ function SurveyCreate() {
   };
 
   useEffect(() => {
-    document.getElementById("answer").focus();
+    if (title.length <= 0) {
+      document.getElementById("title").focus();
+    }else{
+      document.getElementById("answer").focus();
+
+    }
   }, [newAnswer]);
 
   const saveQuestion = () => {
     if (title.trim() === "") {
       toast.error("Ingrese un titulo");
       return;
+    }
+    if (!date) {
+      toast.error("Ingrese una fecha");
+      return
     }
  
     const questionData = {
@@ -88,6 +98,7 @@ function SurveyCreate() {
           <input
             className=" outline-none w-2/3 border border-gray-300 bg-gray-50 dark:bg-slate-800  text-gray-900 dark:text-gray-100 rounded-md px-1 py-1"
             type="text"
+            id="title"
             value={title}
             placeholder="Titulo de la Pregunta"
             onChange={(e) => settitle(e.target.value)}

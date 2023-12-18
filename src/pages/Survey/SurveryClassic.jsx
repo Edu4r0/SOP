@@ -9,7 +9,6 @@ import NotFound from "../NotFound";
 
 function SurveyClassic() {
   const { user } = useParams();
-
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [puntuación, setPuntuación] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -41,7 +40,6 @@ function SurveyClassic() {
   
 
   function handleAnswerSubmit(isCorrect, textoRespuesta) {
-    // añadir puntuación
     const selection = {
       opcion: textoRespuesta,
       correct: isCorrect,
@@ -49,8 +47,6 @@ function SurveyClassic() {
     setOptionselect([...optionselect, [selection]]);
     if (isCorrect) setPuntuación(puntuación + 1);
     if (isCorrect) setPoints(points + 10);
-    // añadir estilos de pregunta
-    // cambiar a la siguiente pregunta
 
     setTimeout(() => {
       if (preguntaActual === preguntas.length - 1) {
